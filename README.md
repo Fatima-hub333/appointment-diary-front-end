@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+![](https://img.shields.io/badge/Microverse-blueviolet)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Book.it
 
-## Available Scripts
+The Book.it API is the back-end service for the Book.it application. It makes use of the Ruby on Rails framework, PostgreSQL, and offers full user authentication and authorization capabilities to provide the Book.it app the necessary endpoints. It contains the data for booking vehicles and users' reservations for the individual user as well as admins.
 
-In the project directory, you can run:
 
-### `npm start`
+## Built With
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Ruby on Rails
+- JWT
+- CanCanCan
+- Bullet
+- Devise
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+Setting up this project locally:
+## Prerequisites
+#### On your terminal:
+- Clone this repository to your computer: git clone git@github.com:Danie12345/bookit-api-be.git.
+- Open the project on your code editor: "cd bookit-api-be" and "code ."
+- Install gems: bundle install.
+- Run `rails db:create` to create the database
+- Run `rails db:migrate` to create the tables
+- Run `rails s` and go to `http://127.0.0.1:4000`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Setup the front end repo with [this link](https://github.com/Fatima-hub333/appointment-diary-front-end.git).
 
-### `npm run build`
+## Authors
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+👤 **Fatima Zahir**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- GitHub: [@emiliazm]()
+- Twitter: [@emilia_zm]()
+- LinkedIn: [LinkedIn]()
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+👤 **Basem Shams**
 
-### `npm run eject`
+- GitHub: [@Danie12345]()
+- Twitter: [@DanielMalo_v4]()
+- LinkedIn: [Daniel Malo]()
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+👤 **Abdul Hadi**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- GitHub: [@joshuaivie]()
+- Twitter: [@joshuaivie\_]()
+- LinkedIn: [joshuaivie]()
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  **Isaac**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- GitHub: [@joshuaivie]()
+- Twitter: [@joshuaivie\_]()
+- LinkedIn: [joshuaivie]()
 
-## Learn More
+## 🤝 Contributing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Contributions, issues, and feature requests are welcome!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Feel free to check the [issues page](https://github.com/Danie12345/bookit-api-be/issues).
 
-### Code Splitting
+## Show your support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Give a ⭐️ if you like this project!
 
-### Analyzing the Bundle Size
+## 📝 License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- This project is [MIT](LICENSE) licensed.
