@@ -1,11 +1,13 @@
-/* eslint-disable no-dupe-keys */
 export default function reducer(state = {
   visible: [],
   all: [],
   current: {
-    id: 1, price: 1, name: 'Audi', image: 'https://i.ytimg.com/vi/L42-aFe8bMo/maxresdefault.jpg',
+    id: 1,
+    price: 1,
+    name: 'Perol',
+    image: 'https://via.placeholder.com/150',
+    visible: true,
   },
-  visible: true,
 }, action = {}) {
   switch (action.type) {
     default:
