@@ -4,8 +4,8 @@ export default function reducer(state = {
   current: {
     id: 1,
     price: 1,
-    name: 'Perol',
-    image: 'https://via.placeholder.com/150',
+    name: 'Audi',
+    image: 'https://i.ytimg.com/vi/mVptBDTYoLQ/maxresdefault.jpg',
     visible: true,
   },
 }, action = {}) {
