@@ -4,36 +4,48 @@ function SignUp() {
       <form>
         <h3>Sign Up</h3>
         <div>
-          <label>Name</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Enter name"
-          />
+          <label htmlFor="name">
+            Name
+            <input
+              id="name"
+              type="text"
+              className="form-control"
+              placeholder="Enter name"
+            />
+          </label>
         </div>
         <div>
-          <label>Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Enter email"
-          />
+          <label htmlFor="email1">
+            Email address
+            <input
+              id="email1"
+              type="email"
+              className="form-control"
+              placeholder="Enter email"
+            />
+          </label>
         </div>
         <div>
-          <label>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Enter password"
-          />
+          <label htmlFor="pass1">
+            Password
+            <input
+              id="pass1"
+              type="password"
+              className="form-control"
+              placeholder="Enter password"
+            />
+          </label>
         </div>
         <div>
-          <label>Password Confirmation</label>
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Confirm password"
-          />
+          <label htmlFor="confpass">
+            Password Confirmation
+            <input
+              id="confpass"
+              type="password"
+              className="form-control"
+              placeholder="Confirm password"
+            />
+          </label>
         </div>
         <div className="d-grid">
           <button type="submit">

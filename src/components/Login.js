@@ -4,29 +4,35 @@ function Login() {
       <form>
         <h3>Sign In</h3>
         <div>
-          <label>Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Enter email"
-          />
+          <label htmlFor="email_check">
+            Email address
+            <input
+              id="email_check"
+              type="email"
+              className="form-control"
+              placeholder="Enter email"
+            />
+          </label>
         </div>
         <div>
-          <label>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Enter password"
-          />
+          <label htmlFor="pass">
+            Password
+            <input
+              id="pass"
+              type="password"
+              className="form-control"
+              placeholder="Enter password"
+            />
+          </label>
         </div>
         <div>
           <div className="custom-control custom-checkbox">
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              id="customCheck1"
-            />
             <label className="custom-control-label" htmlFor="customCheck1">
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                id="customCheck1"
+              />
               Remember me
             </label>
           </div>
@@ -38,7 +44,7 @@ function Login() {
         </div>
         <p className="forgot-password">
           Forgot
-           <a href="#">password?</a>
+          <a href="/">password?</a>
         </p>
         <p className="forgot-password">
           Dont have an account?
