@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router';
 import NavigationPanel from './components/NavigationPanel';
-import Login from './components/Login';
+import Login from './components/LoginForm';
 import SignUp from './components/SignUp';
 import Reserve from './components/Reserve';
 import MyReservations from './components/MyReservations';
