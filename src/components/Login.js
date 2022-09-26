@@ -1,12 +1,29 @@
+import { useState } from 'react';
+
 function Login() {
+  const [inputs, setInputs] = useState({});
+
+  const hundleChange = (event) => {
+    const { name } = event.target;
+    const { value } = event.target;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
+
+  const hundleSubmit = (event) => {
+    event.preventDefault();
+    console.log(inputs);
+  };
+
   return (
     <div className="Login">
-      <form>
+      <form onSubmit={hundleSubmit}>
         <h3>Sign In</h3>
         <div>
           <label htmlFor="email_check">
             Email address
             <input
+              name="email"
+              onChange={hundleChange}
               id="email_check"
               type="email"
               className="form-control"
@@ -18,6 +35,8 @@ function Login() {
           <label htmlFor="pass">
             Password
             <input
+              name="password"
+              onChange={hundleChange}
               id="pass"
               type="password"
               className="form-control"
