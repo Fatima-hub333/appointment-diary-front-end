@@ -4,6 +4,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Reserve from './components/Reserve';
 import MyReservations from './components/MyReservations';
+import AddVehicle from './components/AddVehicle';
 import DeleteVehicle from './components/DeleteVehicle';
 import Vehicles from './components/Vehicles';
 import VehicleDetails from './components/VehicleDetails';
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={(<Login />)} />
         <Route path="/sign_up" element={<SignUp />} />
         <Route path="/main" element={(<Vehicles />)} />
+        <Route path="/vehicle" element={(<AddVehicle />)} />
         <Route path="/vehicle" element={(<DeleteVehicle />)} />
         <Route path="/vehicles/:vehicleId/details" element={(<VehicleDetails />)} />
         <Route path="/vehicles/:vehicleId/reservation" element={(<Reserve />)} />
