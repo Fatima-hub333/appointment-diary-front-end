@@ -35,7 +35,7 @@ function NavigationPanel() {
                 <NavLink to="/vehicles/new">Add vehicle</NavLink>
               </li>
               <li>
-                <NavLink to="/vehicle">Delete vehicle</NavLink>
+                <NavLink to="/vehicles">Delete vehicle</NavLink>
               </li>
             </ul>
           </Nav>
