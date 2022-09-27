@@ -23,7 +23,7 @@ function NavigationPanel() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/vehicle">
+                <Link className="nav-link" to="/vehicles/new">
                   Add a vehicle
                 </Link>
               </li>
