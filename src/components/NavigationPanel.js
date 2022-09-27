@@ -1,40 +1,62 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
+import { NavLink } from 'react-router-dom';
+import { MdMenu, MdClose, MdFacebook } from 'react-icons/md';
+import {
+  BsTwitter, BsGoogle, BsPinterest, BsInstagram,
+} from 'react-icons/bs';
+import '../styles/NavigationPanel.scss';
 
 function NavigationPanel() {
+  const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(!['/', '/sign_up'].includes(location.pathname));
+  useEffect(() => {
+    if (['/', '/sign_up'].includes(location.pathname)) setIsMenuOpen(false);
+  }, [location]);
   return (
-    <div className="NavigationPanel">
-      <div className="App">
-        <nav>
-          <div>
+    <div className={`NavigationPanel ${isMenuOpen ? 'open' : ''}`}>
+      <div className="nav-container">
+        <MdMenu className="nav-menu-icon" onClick={() => setIsMenuOpen(!isMenuOpen)} />
+        <MdClose className="nav-close-icon" onClick={() => setIsMenuOpen(!isMenuOpen)} />
+        <div className="nav-collalpse">
+          <NavLink className="nav-brand" to="/main">Vespa</NavLink>
+          <nav>
             <ul>
-              <li className="nav-item">
-                <Link className="nav-link" to="/main">
-                  Vehicles
-                </Link>
+              <li>
+                <NavLink to="/main">Vehicles</NavLink>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/reservation">
-                  Reserve
-                </Link>
+              <li>
+                <NavLink to="/reservation">Reserve</NavLink>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/user/reservations">
-                  My reservations
-                </Link>
+              <li>
+                <NavLink to="/user/reservations">My reservations</NavLink>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/vehicles/new">
-                  Add a vehicle
-                </Link>
+              <li>
+                <NavLink to="/vehicle">Add vehicle</NavLink>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/vehicle">
-                  Delete vehicle
-                </Link>
+              <li>
+                <NavLink to="/vehicles">Delete vehicle</NavLink>
               </li>
             </ul>
-          </div>
-        </nav>
+          </nav>
+        </div>
+        <div className="nav-social-links">
+          <a href="#/">
+            <BsTwitter />
+          </a>
+          <a href="#/">
+            <MdFacebook />
+          </a>
+          <a href="#/">
+            <BsGoogle />
+          </a>
+          <a href="#/">
+            <BsInstagram />
+          </a>
+          <a href="#/">
+            <BsPinterest />
+          </a>
+        </div>
       </div>
     </div>
   );
