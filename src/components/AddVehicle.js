@@ -1,77 +1,72 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import {
+  Container, Row, Col, Alert, Form, Button,
+} from 'react-bootstrap';
 
-function DeleteVehicle() {
-  const [vehicles, setvehicles] = useState([
-    {
-      id: 1,
-      name: 'vehicle 1',
-      description: 'This is a description for vehicle 1',
-      image: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-      price: '$100',
-    },
-    {
-      id: 2,
-      name: 'vehicle 2',
-      description: 'This is a description for vehicle 2',
-      image: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-      price: '$200',
-    },
-    {
-      id: 3,
-      name: 'vehicle 3',
-      description: 'This is a description for vehicle 3',
-      image: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-      price: '$300',
-    },
-    {
-      id: 4,
-      name: 'vehicle 4',
-      description: 'This is a description for vehicle 4',
-      image: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-      price: '$400',
-    },
-  ]);
+function AddVehicle() {
+  const [errors, setErrors] = useState([]);
+  const [{
+    id, price, name, image,
+  }, setVehicle] = useState({});
 
-  const handleDelete = (id) => {
-    const newVehicle = vehicles.filter(
-      (vehicle) => vehicle.id !== id,
-    );
-    setvehicles(newVehicle);
+  const onSelectFile = (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setVehicle({
+        id, name, price, image: undefined,
+      });
+      return;
+    }
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setVehicle({
+        id, name, price, image: reader.result,
+      });
+    };
+    reader.onerror = () => {
+      setErrors([`Error occurred reading file: ${file.name}`]);
+    };
   };
-
+  const handleChange = (e) => {
+    setVehicle({
+      id, name, price, image, [e.target.name]: e.target.value,
+    });
+  };
   return (
-    <div>
-      <div className="text-center">
-        <h1>Vehicle List</h1>
-      </div>
-      <div className="list-wrapper">
-        <ul className="list-con">
-          {vehicles.map((vehicle) => (
-            <li className="list-group-item" key={vehicle.id}>
-              <div className="vehi-card">
-                <img
-                  className="card-img-top"
-                  src={vehicle.image}
-                  alt="Card cap"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{vehicle.name}</h5>
-                  <p className="card-text">{vehicle.price}</p>
-                </div>
-                <button
-                  type="submit"
-                  className="btn btn-primary add-btn mx-auto"
-                  onClick={() => handleDelete(vehicle.id)}
-                >
-                  Delete
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <Form>
+      <Container className="AddVehicle">
+        <Row>
+          <Col>
+            { errors.map((error) => (
+              <Alert key={error} variant="danger">
+                {error}
+              </Alert>
+            )) }
+          </Col>
+        </Row>
+        <Row>
+          <Col lg={8}>
+            <div className="image-panel">
+              <input type="file" onChange={onSelectFile} />
+              {image ? <img src={image} alt={name} /> : 'Plese select an image' }
+            </div>
+          </Col>
+          <Col lg={4}>
+            <Row>
+              <Form.Control type="text" placeholder="Name" name="name" value={name} onChange={handleChange} />
+            </Row>
+            <Row>
+              <Form.Control type="number" placeholder="Price" name="price" value={price} onChange={handleChange} />
+            </Row>
+            <Row>
+              <Button variant="primary" type="submit">Create</Button>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+    </Form>
   );
 }
 
-export default DeleteVehicle;
+export default AddVehicle;
