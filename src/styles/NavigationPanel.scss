@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Style+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&display=swap');
+
 .NavigationPanel {
   position: fixed;
   top: 0;
@@ -5,7 +8,7 @@
   width: 250px;
   height: 100vh;
   margin-left: -250px;
-  background: var(--bg-color);
+  background-color: #f8f9fa;
   z-index: 10;
 
   &.open {
@@ -25,17 +28,18 @@
   li {
     & > a {
       display: block;
-      color: var(--text-color);
+      color: var(--text-clr);
       text-decoration: none;
       font-size: 1.22rem;
       font-weight: bold;
-      padding: 1em 1.2em;
+      padding: 0.75em 1.2em;
+      font-family: 'Inter Tight', sans-serif;
       text-transform: uppercase;
 
       &.active {
         display: block;
-        color: var(--bg-color);
-        background: var(--primary-color);
+        color: #fff;
+        background: #98bf11;
         text-decoration: none;
       }
     }
@@ -47,7 +51,7 @@
     position: relative;
     height: 100vh;
     padding: 20px 0 20px 20px;
-    border-right: solid 3px var(--secondary-color);
+    border-right: solid 3px #efefef;
 
     .nav-menu-icon {
       position: fixed;
@@ -55,7 +59,7 @@
       left: 1rem;
       font-size: 2.5rem;
       z-index: 9;
-      transition: margin var(--menu-transition-time);
+      transition: margin 0.5s;
     }
 
     .nav-close-icon {
@@ -82,16 +86,16 @@
 
     & > a {
       font-size: 1.4rem;
-      color: var(--text-color);
+      color: var(--text-clr);
       text-decoration: none;
     }
   }
 
   .nav-brand {
     display: inline-block;
-    font-family: 'Bintton', sans-serif;
+    font-family: 'Style Script', cursive;
     font-size: 4rem;
-    color: var(--text-color);
+    color: var(--text-clr);
     transform: rotate(-12deg);
   }
 }
