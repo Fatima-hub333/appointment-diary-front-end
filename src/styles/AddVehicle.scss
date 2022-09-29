@@ -1,6 +1,7 @@
 .AddVehicle {
   & > .container {
-    padding: 4rem;
+    margin-top: 0;
+    padding: 0 2rem 0 2rem;
     min-height: 100vh;
 
     button {
@@ -33,10 +34,11 @@
       font-size: 2rem;
       min-height: 70vh;
       margin: 0;
+      margin-bottom: 20px;
     }
 
     &.dotted {
-      border: dashed 3px var(--secondary-color);
+      border: dashed 3px #efefef;
     }
 
     & > input[type="file"] {
