@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/prefer-default-export */
 const USER_REGISTRATION_REQUEST = 'USER_REGISTRATION_REQUEST';
 const USER_REGISTRATION_SUCCESS = 'USER_REGISTRATION_SUCCESS';
 const USER_REGISTRATION_FAILURE = 'USER_REGISTRATION_FAILURE';
@@ -56,3 +54,31 @@ export const userRegistration = (user) => async (dispatch) => {
     dispatch(userRegistrationFailure(error.message));
   }
 };
+
+const userRegistrationReducer = (state = defaultState, action) => {
+  switch (action.type) {
+    case USER_REGISTRATION_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case USER_REGISTRATION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        user: action.payload,
+      };
+    case USER_REGISTRATION_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export default userRegistrationReducer;
