@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import '../styles/Vehicles.scss';
 
 function Vehicles() {
   const vehicles = [
