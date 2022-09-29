@@ -1,21 +1,15 @@
-import { toast } from 'react-toastify';
-import client from '../../utils/client';
-import TokenManager from '../../utils/tokenManger';
-import UserObjectManager from '../../utils/userObjectManager';
-
-const LOGIN_REQUEST = 'bookit/userSessions/LOGIN_REQUEST';
-const LOGIN_SUCCESS = 'bookit/userSessions/LOGIN_SUCCESS';
-const LOGIN_FAILURE = 'bookit/userSessions/LOGIN_FAILURE';
-const LOGOUT_REQUEST = 'bookit/userSessions/LOGOUT_REQUEST';
-const LOGOUT_SUCCESS = 'bookit/userSessions/LOGOUT_SUCCESS';
-const LOGOUT_ERROR = 'bookit/userSessions/LOGOUT_ERROR';
-const SET_USER = 'bookit/userSessions/SET_USER';
+/* eslint-disable no-unused-vars */
+const LOGIN_REQUEST = 'LOGIN_REQUEST';
+const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+const LOGIN_FAILURE = 'LOGIN_FAILURE';
+const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
+const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+const LOGOUT_ERROR = 'LOGOUT_ERROR';
 
 const initialUser = {
   id: null,
   username: null,
   email: null,
-  role: null,
 };
 
 const defaultState = {
@@ -24,55 +18,25 @@ const defaultState = {
   user: initialUser,
 };
 
-export default function reducer(state = defaultState, action = {}) {
-  switch (action.type) {
-    case LOGIN_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        error: null,
-      };
-    case LOGIN_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        error: null,
-        user: action.payload,
-      };
-    case LOGIN_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
-    case LOGOUT_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        error: null,
-      };
-    case LOGOUT_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        error: null,
-        user: initialUser,
-      };
-    case LOGOUT_ERROR:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
-    case SET_USER:
-      return {
-        ...state,
-        user: action.payload,
-      };
-    default:
-      return state;
-  }
-}
+const MockLogin = (user) => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    if (user.email === 'user@gmail.com' && user.password === 'password') {
+      resolve({
+        id: 1,
+        username: 'test_user',
+        email: 'user@gmail.com',
+      });
+    } else {
+      reject(new Error('Invalid email or password'));
+    }
+  }, 3000);
+});
+
+const MockLogout = () => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve();
+  }, 3000);
+});
 
 const loginRequest = () => ({ type: LOGIN_REQUEST });
 const loginSuccess = (userData) => ({ type: LOGIN_SUCCESS, payload: userData });
@@ -81,42 +45,22 @@ const logoutRequest = () => ({ type: LOGOUT_REQUEST });
 const logoutSuccess = () => ({ type: LOGOUT_SUCCESS });
 const logoutError = (error) => ({ type: LOGOUT_ERROR, payload: error });
 
-export const setUser = (user) => ({ type: SET_USER, payload: user });
-
-export const login = (user, navigate) => async (dispatch) => {
+export const login = (user) => async (dispatch) => {
   dispatch(loginRequest());
   try {
-    const payload = { user };
-    const response = await client.post('users/sign_in', payload);
-    const { data } = response.data;
-    const token = response.headers.authorization;
-    TokenManager.setToken(token);
-    UserObjectManager.setUserObject(data);
-    dispatch(loginSuccess(data));
-    navigate('/main');
-    toast.success("You've successfully logged in!");
+    const userData = await MockLogin(user);
+    dispatch(loginSuccess(userData));
   } catch (error) {
-    dispatch(loginFailure(error.response.data.message));
-    toast.error(`There was an error logging in: ${error.response.data.message}`);
+    dispatch(loginFailure(error.message));
   }
 };
 
-export const logout = (navigate) => async (dispatch) => {
+export const logout = () => async (dispatch) => {
   dispatch(logoutRequest());
   try {
-    await client.delete('users/sign_out');
-    TokenManager.destroyToken();
-    UserObjectManager.destroyUserObject();
-    navigate('/login');
+    await MockLogout();
     dispatch(logoutSuccess());
-    toast("You've successfully logged out!");
   } catch (error) {
-    dispatch(logoutError(error.message));
-    toast.error(error.response.data.message);
+    dispatch(logoutError(error));
   }
-};
-
-export const setErrors = (error) => async (dispatch) => {
-  dispatch(loginFailure(error));
-  toast.error(error);
 };
