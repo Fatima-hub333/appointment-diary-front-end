@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable import/prefer-default-export */
 const USER_REGISTRATION_REQUEST = 'USER_REGISTRATION_REQUEST';
 const USER_REGISTRATION_SUCCESS = 'USER_REGISTRATION_SUCCESS';
 const USER_REGISTRATION_FAILURE = 'USER_REGISTRATION_FAILURE';
@@ -31,3 +32,27 @@ const MockUserRegistration = (user) => new Promise((resolve, reject) => {
     }
   }, 3000);
 });
+
+const userRegistrationRequest = () => ({
+  type: USER_REGISTRATION_REQUEST,
+});
+
+const userRegistrationSuccess = (user) => ({
+  type: USER_REGISTRATION_SUCCESS,
+  payload: user,
+});
+
+const userRegistrationFailure = (error) => ({
+  type: USER_REGISTRATION_FAILURE,
+  payload: error,
+});
+
+export const userRegistration = (user) => async (dispatch) => {
+  dispatch(userRegistrationRequest());
+  try {
+    const response = await MockUserRegistration(user);
+    dispatch(userRegistrationSuccess(response.data));
+  } catch (error) {
+    dispatch(userRegistrationFailure(error.message));
+  }
+};
