@@ -1,4 +1,4 @@
-const ADDVEHICLE = 'bookit/vehicles/ADDVEHICLE';
+const ADDVEHICLE = 'vespa/vehicles/ADDVEHICLE';
 
 export default function reducer(state = {
   visible: [],
