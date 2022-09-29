@@ -4,9 +4,12 @@
     padding: 0 2rem 0 2rem;
     min-height: 100vh;
 
+    @media only screen and (min-width: 992px) {
+      padding: 0 4rem;
+    }
+
     button {
       width: auto;
-      padding: 0 4rem;
       margin: 4rem 0 0 auto;
     }
   }
