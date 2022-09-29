@@ -4,12 +4,14 @@ import {
 } from 'react-bootstrap';
 import { MdCheck } from 'react-icons/md';
 import { AiOutlineRightCircle } from 'react-icons/ai';
+import '../styles/AddVehicle.scss';
 
 function AddVehicle() {
   const [errors, setErrors] = useState([]);
   const [{
     id, price, name, image,
   }, setVehicle] = useState({});
+
   const onSelectFile = (e) => {
     if (!e.target.files || e.target.files.length === 0) {
       setVehicle({
@@ -79,4 +81,5 @@ function AddVehicle() {
     </Form>
   );
 }
+
 export default AddVehicle;
