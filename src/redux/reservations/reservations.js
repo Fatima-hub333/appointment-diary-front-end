@@ -1,4 +1,4 @@
-const ADDRESERVATION = 'bookit/reservations/ADDRESERVATION';
+const ADDRESERVATION = 'vespa/reservations/ADDRESERVATION';
 
 export default function reducer(state = [], action = {}) {
   switch (action.type) {
