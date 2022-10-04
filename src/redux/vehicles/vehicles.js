@@ -1,13 +1,10 @@
-import listVehicles from './api';
+import listVehicles, { newVehicle } from "./api";
 
-const ADDVEHICLE = 'bookit/vehicles/ADDVEHICLE';
-const DELETEVEHICLE = 'bookit/vehicles/DELETEVEHICLE';
-const LISTALLVEHICLES = 'bookit/vehicles/LISTALLVEHICLES';
+const ADDVEHICLE = "bookit/vehicles/ADDVEHICLE";
+const DELETEVEHICLE = "bookit/vehicles/DELETEVEHICLE";
+const LISTALLVEHICLES = "bookit/vehicles/LISTALLVEHICLES";
 
-const vehiclesReducer = function reducer(
-  state = [],
-  action = {},
-) {
+const vehiclesReducer = function reducer(state = [], action = {}) {
   switch (action.type) {
     case ADDVEHICLE: {
       const vehicle = { ...action.payload, id: Date.now() };
@@ -26,7 +23,7 @@ const vehiclesReducer = function reducer(
         return tempVehicle;
       });
       const newVisible = state.visible.filter(
-        (vehicle) => vehicle.id !== action.payload,
+        (vehicle) => vehicle.id !== action.payload
       );
       return { ...state, all: newAll, visible: newVisible };
     }
@@ -37,10 +34,20 @@ const vehiclesReducer = function reducer(
   }
 };
 
-export const addVehicle = (vehicle) => ({
-  type: ADDVEHICLE,
-  payload: vehicle,
-});
+export const addVehicle =
+  (brand, model, price, image, description) => async (dispatch) => {
+    await newVehicle(brand, model, price, image, description);
+    dispatch({
+      type: ADDVEHICLE,
+      payload: {
+        brand,
+        model,
+        price,
+        image,
+        description,
+      },
+    });
+  };
 
 export const deleteVehicle = (vehicleId) => ({
   type: DELETEVEHICLE,
