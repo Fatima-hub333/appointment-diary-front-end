@@ -8,4 +8,21 @@ const listVehicles = async () => {
   return vehicles;
 };
 
+
+export const newVehicle = async (brand, model, price, image, description) => {
+  await fetch(Api + authenticationToken, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+    body: JSON.stringify({
+      brand,
+      model,
+      price,
+      image,
+      description,
+    }),
+  }).catch((error) => error.message);
+};
+
 export default listVehicles;
