@@ -1,10 +1,9 @@
 import { toast } from 'react-toastify';
-// import client from '../../utils/client';
+import client from '../../utils/client';
 
 const SIGNUP_REQUEST = 'bookit/userRegistrations/SIGNUP_REQUEST';
 const SIGNUP_SUCCESS = 'bookit/userRegistrations/SIGNUP_SUCCESS';
 const SIGNUP_FAILURE = 'bookit/userRegistrations/SIGNUP_FAILURE';
-// const BASEURL = 'https://book-vehicle.herokuapp.com/';
 
 const initialUser = {
   id: null,
@@ -49,10 +48,10 @@ const signupRequest = () => ({
   type: SIGNUP_REQUEST,
 });
 
-// const signupSuccess = (user) => ({
-//   type: SIGNUP_SUCCESS,
-//   payload: user,
-// });
+const signupSuccess = (user) => ({
+  type: SIGNUP_SUCCESS,
+  payload: user,
+});
 
 const signupFailure = (error) => ({
   type: SIGNUP_FAILURE,
@@ -63,14 +62,17 @@ export const signup = (userData) => async (dispatch) => {
   dispatch(signupRequest());
   try {
     const user = userData;
-    user.role = 'user';
-    const payload = { user };
-    console.log('PAYLOAD :', payload);
-    // const response = await client.post('users', payload);
-    // const { data } = response.data;
-    // dispatch(signupSuccess(data));
+    user.roles = ['user'];
+
+    const data = JSON.stringify(user);
+    const response = await client.post('/users', data);
+
+    const res = response.data;
+    const payload = res.data;
+
+    dispatch(signupSuccess(payload));
     // navigate('/');
-    // toast.success('Signup successful');
+    toast.success('Signup successful');
   } catch (error) {
     dispatch(signupFailure(error.message));
     toast.error('Signup failed');

@@ -10,11 +10,7 @@ function SignUpForm() {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
-    dispatch(signup(data));
-    const userData = JSON.stringify(data);
-    console.log('FORM DATA: ', userData);
-  };
+  const onSubmit = (data) => dispatch(signup(data));
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
