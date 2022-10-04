@@ -1,6 +1,6 @@
 import { legacy_createStore as legacyCreateStore, combineReducers, applyMiddleware } from 'redux';
-import thunk from "redux-thunk";
-import logger from "redux-logger";
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import user from './user/userSessions';
 import reservations from './reservations/reservations';
 import vehicles, { listAllVehicles } from './vehicles/vehicles';

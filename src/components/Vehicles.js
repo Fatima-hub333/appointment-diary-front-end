@@ -2,9 +2,8 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../styles/Vehicles.scss';
 
-function Vehicles() {
-  const vehicles = useSelector((state) => state.vehiclesReducer);
-  console.log(vehicles)
+const Vehicles = () => {
+  const vehicles = useSelector((state) => state.vehicles);
   return (
     <div className="vehicles-list-cont">
       <div>
@@ -16,9 +15,17 @@ function Vehicles() {
             <li className="list-group-item" key={vehicle.id}>
               <Link to={`/vehicles/${vehicle.id}/details`}>
                 <div className="vehi-card">
-                  <img className="card-img-top" src={vehicle.image} alt="Card cap" />
+                  <img
+                    className="card-img-top"
+                    src={vehicle.image}
+                    alt="Card cap"
+                  />
                   <div className="card-body">
-                    <h5 className="card-title">{vehicle.name}</h5>
+                    <h5 className="card-title">
+                      {vehicle.brand}
+                      {' '}
+                      {vehicle.model}
+                    </h5>
                     <p className="card-text">{vehicle.price}</p>
                   </div>
                 </div>
@@ -29,6 +36,6 @@ function Vehicles() {
       </div>
     </div>
   );
-}
+};
 
 export default Vehicles;
