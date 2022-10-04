@@ -9,7 +9,7 @@ const listVehicles = async () => {
 };
 
 
-export const newVehicle = async (brand, model, price, image, description) => {
+export const newVehicle = async (brand, model, price, image, description, visible) => {
   console.log(brand, model, price, image, description);
   await fetch('https://book-vehicle.herokuapp.com/api/v1/vehicles' , {
     method: "POST",
@@ -23,6 +23,7 @@ export const newVehicle = async (brand, model, price, image, description) => {
       price,
       image,
       description,
+      visible,
     }),
   }).catch((error) => error.message);
 };

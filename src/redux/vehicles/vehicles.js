@@ -39,8 +39,8 @@ const vehiclesReducer = function reducer(state = [], action = {}) {
 };
 
 export const addVehicle =
-  (brand, model, price, image, description) => async (dispatch) => {
-    await newVehicle(brand, model, price, image, description);
+  (brand, model, price, image, description, visible) => async (dispatch) => {
+    await newVehicle(brand, model, price, image, description, visible);
     dispatch({
       type: ADDVEHICLE,
       payload: {
@@ -49,6 +49,7 @@ export const addVehicle =
         price,
         image,
         description,
+        visible,
       },
     });
   };

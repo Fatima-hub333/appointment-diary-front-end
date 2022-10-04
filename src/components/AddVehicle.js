@@ -10,7 +10,8 @@ function AddVehicle() {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [vehicle, setVehicle] = useState({});
-  const { price, brand, model, description, image } = vehicle;
+  const { price, brand, model, description, image, visible } = vehicle;
+  vehicle.visible = true
 
   const onSelectFile = (e) => {
     if (!e.target.files || e.target.files.length === 0) {
@@ -38,10 +39,12 @@ function AddVehicle() {
       ...vehicle,
       [e.target.name]: e.target.value,
     });
+    
   };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addVehicle( vehicle.brand, vehicle.model, vehicle.price, vehicle.image, vehicle.description));
+    dispatch(addVehicle( vehicle.brand, vehicle.model, vehicle.price, vehicle.image, vehicle.description, vehicle.visible));
   };
   return (
     <Form className="AddVehicle" onSubmit={handleSubmit}>
