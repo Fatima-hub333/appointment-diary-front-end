@@ -7,12 +7,16 @@ const LISTALLVEHICLES = "bookit/vehicles/LISTALLVEHICLES";
 const vehiclesReducer = function reducer(state = [], action = {}) {
   switch (action.type) {
     case ADDVEHICLE: {
-      const vehicle = { ...action.payload, id: Date.now() };
-      return {
+      return [
         ...state,
-        visible: [...state.visible, vehicle],
-        all: [...state.all, vehicle],
-      };
+        {
+          brand: action.payload.brand,
+          model: action.payload.model,
+          price: action.payload.price,
+          image: action.payload.image,
+          description: action.payload.description,
+        },
+      ];
     }
     case DELETEVEHICLE: {
       const newAll = state.all.map((vehicle) => {
