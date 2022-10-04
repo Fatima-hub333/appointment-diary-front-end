@@ -42,7 +42,7 @@ export const login = (user) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   dispatch(logoutRequest());
   try {
-    // const response = await client.post('/users/sign_out/', data);
+    // const response = await client.post('/users/sign_out/', data); //uncomment to connect
     dispatch(logoutSuccess());
   } catch (error) {
     dispatch(logoutError(error));

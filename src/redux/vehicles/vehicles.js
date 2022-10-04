@@ -4,10 +4,7 @@ const ADDVEHICLE = 'bookit/vehicles/ADDVEHICLE';
 const DELETEVEHICLE = 'bookit/vehicles/DELETEVEHICLE';
 const LISTALLVEHICLES = 'bookit/vehicles/LISTALLVEHICLES';
 
-const vehiclesReducer = function reducer(
-  state = [],
-  action = {},
-) {
+const vehiclesReducer = function reducer(state = [], action = {}) {
   switch (action.type) {
     case ADDVEHICLE: {
       const vehicle = { ...action.payload, id: Date.now() };
