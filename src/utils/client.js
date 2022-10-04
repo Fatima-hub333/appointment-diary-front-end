@@ -2,11 +2,15 @@
 import axios from 'axios';
 import TokenManager from './tokenManger';
 
-const BASEURL = 'https://vespa-api-be.herokuapp.com/';
+const BASEURL = 'https://book-vehicle.herokuapp.com';
 
 const client = axios.create({
   baseURL: BASEURL,
-  timeout: 1000,
+  timeout: 3000,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
 });
 
 client.interceptors.request.use(
