@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router';
 import NavigationPanel from './components/NavigationPanel';
-import Login from './components/LoginForm';
+// import Login from './components/LoginForm';
 import SignUp from './components/SignUp';
 import Vehicles from './components/Vehicles';
 import DeleteVehicle from './components/DeleteVehicle';
@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <NavigationPanel />
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<VehicleDetails />} />
         <Route path="/sign_up" element={<SignUp />} />
         <Route path="/main" element={<Vehicles />} />
         <Route path="/vehicles" element={<DeleteVehicle />} />

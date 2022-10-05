@@ -8,13 +8,12 @@ const listVehicles = async () => {
   return vehicles;
 };
 
-
 export const newVehicle = async (brand, model, price, image, description) => {
   console.log(brand, model, price, image, description);
-  await fetch('https://book-vehicle.herokuapp.com/api/v1/vehicles' , {
-    method: "POST",
+  await fetch('https://book-vehicle.herokuapp.com/api/v1/vehicles', {
+    method: 'POST',
     headers: {
-      "Content-type": "application/json; charset=UTF-8",
+      'Content-type': 'application/json; charset=UTF-8',
     },
     body: JSON.stringify({
       authentication_token: authenticationToken,
