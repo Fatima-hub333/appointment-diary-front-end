@@ -1,9 +1,8 @@
-import { toast } from 'react-toastify';
 import client from '../../utils/client';
 
-const SIGNUP_REQUEST = 'bookit/userRegistrations/SIGNUP_REQUEST';
-const SIGNUP_SUCCESS = 'bookit/userRegistrations/SIGNUP_SUCCESS';
-const SIGNUP_FAILURE = 'bookit/userRegistrations/SIGNUP_FAILURE';
+const SIGNUP_REQUEST = 'book-vehicle/userRegistrations/SIGNUP_REQUEST';
+const SIGNUP_SUCCESS = 'book-vehicle/userRegistrations/SIGNUP_SUCCESS';
+const SIGNUP_FAILURE = 'book-vehicle/userRegistrations/SIGNUP_FAILURE';
 
 const initialUser = {
   id: null,
@@ -68,14 +67,11 @@ export const signup = (userData, navigate) => async (dispatch) => {
     const { data } = response.data;
     dispatch(signupSuccess(data));
     navigate('/');
-    toast.success('Signup successful');
   } catch (error) {
     dispatch(signupFailure(error.message));
-    toast.error('Signup failed');
   }
 };
 
 export const setErrors = (error) => async (dispatch) => {
   dispatch(signupFailure(error));
-  toast.error(error);
 };

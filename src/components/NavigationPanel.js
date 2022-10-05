@@ -21,7 +21,7 @@ function NavigationPanel() {
         <MdMenu className="nav-menu-icon" onClick={() => setIsMenuOpen(!isMenuOpen)} />
         <MdClose className="nav-close-icon" onClick={() => setIsMenuOpen(!isMenuOpen)} />
         <div className="nav-collalpse">
-          <NavLink className="nav-brand" to="/main">Book.it</NavLink>
+          <NavLink className="nav-brand" to="/main">Vespa</NavLink>
           <nav>
             <ul>
               {user.id && (

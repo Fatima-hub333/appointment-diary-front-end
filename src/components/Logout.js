@@ -3,15 +3,15 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../redux/userSessions/userSessions';
 
-function Logout() {
+function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(logout(navigate));
-  }, []);
+  }, [dispatch, navigate]);
 
   return <></>;
 }
 
-export default Logout;
+export default Login;
