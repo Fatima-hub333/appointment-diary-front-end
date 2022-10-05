@@ -5,7 +5,7 @@ import { deleteVehicle } from '../redux/vehicles/vehicles';
 import '../styles/DeleteVehicle.scss';
 
 function DeleteVehicle() {
-  const vehicles = useSelector((state) => state.vehicles.all);
+  const vehicles = useSelector((state) => state.vehicles);
   const dispatch = useDispatch();
 
   const handleDelete = (id) => {
@@ -29,21 +29,16 @@ function DeleteVehicle() {
         <tbody>
           {vehicles.map((vehicle) => (
             <tr key={vehicle.id}>
+              <td>{vehicle.id}</td>
               <td>
-                {vehicle.id}
-
+                {vehicle.brand}
+                {' '}
+                {vehicle.model}
               </td>
-              <td>
-                {vehicle.name}
-
-              </td>
-              <td>
-                {vehicle.price}
-
-              </td>
+              <td>{vehicle.price}</td>
               <td>
                 {vehicle.action}
-                { vehicle.visible ? (
+                {vehicle.visible ? (
                   <button
                     type="submit"
                     className="btn btn-primary add-btn"
@@ -51,7 +46,9 @@ function DeleteVehicle() {
                   >
                     Delete
                   </button>
-                ) : 'This vehicle has been marked' }
+                ) : (
+                  'This vehicle has been marked'
+                )}
               </td>
             </tr>
           ))}

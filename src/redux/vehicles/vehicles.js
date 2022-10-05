@@ -1,8 +1,8 @@
-import listVehicles, { newVehicle } from "./api";
+import listVehicles, { newVehicle, removeVehicle } from './api';
 
-const ADDVEHICLE = "bookit/vehicles/ADDVEHICLE";
-const DELETEVEHICLE = "bookit/vehicles/DELETEVEHICLE";
-const LISTALLVEHICLES = "bookit/vehicles/LISTALLVEHICLES";
+const ADDVEHICLE = 'bookit/vehicles/ADDVEHICLE';
+export const DELETEVEHICLE = 'bookit/vehicles/DELETEVEHICLE';
+const LISTALLVEHICLES = 'bookit/vehicles/LISTALLVEHICLES';
 
 const vehiclesReducer = function reducer(state = [], action = {}) {
   switch (action.type) {
@@ -19,17 +19,7 @@ const vehiclesReducer = function reducer(state = [], action = {}) {
       ];
     }
     case DELETEVEHICLE: {
-      const newAll = state.all.map((vehicle) => {
-        const tempVehicle = { ...vehicle };
-        if (vehicle.id === action.payload) {
-          tempVehicle.visible = false;
-        }
-        return tempVehicle;
-      });
-      const newVisible = state.visible.filter(
-        (vehicle) => vehicle.id !== action.payload
-      );
-      return { ...state, all: newAll, visible: newVisible };
+      return state.filter((vehicle) => vehicle.id !== action.payload.id);
     }
     case LISTALLVEHICLES:
       return [...state, ...action.payload];
@@ -38,29 +28,30 @@ const vehiclesReducer = function reducer(state = [], action = {}) {
   }
 };
 
-export const addVehicle =
-  (brand, model, price, image, description) => async (dispatch) => {
-    await newVehicle(brand, model, price, image, description);
-    dispatch({
-      type: ADDVEHICLE,
-      payload: {
-        brand,
-        model,
-        price,
-        image,
-        description,
-      },
-    });
-  };
-
-export const deleteVehicle = (vehicleId) => ({
-  type: DELETEVEHICLE,
-  payload: vehicleId,
-});
+const addVehicle = (brand, model, price, image, description, visible) => async (dispatch) => {
+  await newVehicle(brand, model, price, image, description, visible);
+  dispatch({
+    type: ADDVEHICLE,
+    payload: {
+      brand,
+      model,
+      price,
+      image,
+      description,
+      visible,
+    },
+  });
+};
 
 export const listAllVehicles = () => async (dispatch) => {
   const vehicles = await listVehicles();
   dispatch({ type: LISTALLVEHICLES, payload: vehicles });
 };
 
+export const deleteVehicle = (id) => async (dispatch) => {
+  await removeVehicle(id);
+  dispatch({ type: DELETEVEHICLE, payload: { id } });
+};
+
 export default vehiclesReducer;
+export { addVehicle };
