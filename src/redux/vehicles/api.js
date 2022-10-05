@@ -1,6 +1,3 @@
-import { useDispatch } from "react-redux";
-import { DELETEVEHICLE } from "./vehicles";
-
 const Api = 'https://book-vehicle.herokuapp.com/api/v1/vehicles';
 const authenticationToken = 'zVJzDi87E5yJLxsC2U_h';
 
@@ -22,7 +19,6 @@ export const newVehicle = async (
   description,
   visible,
 ) => {
-  console.log(brand, model, price, image, description);
   await fetch(Api, {
     method: 'POST',
     headers: {
@@ -41,9 +37,8 @@ export const newVehicle = async (
 };
 
 export const removeVehicle = async (id) => {
-  console.log(id);
   await fetch(`${Api}/${id}?authentication_token=${authenticationToken}`, {
-    method: "DELETE",
+    method: 'DELETE',
   }).catch((error) => error.message);
 };
 

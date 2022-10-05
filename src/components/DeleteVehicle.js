@@ -31,7 +31,9 @@ function DeleteVehicle() {
             <tr key={vehicle.id}>
               <td>{vehicle.id}</td>
               <td>
-                {vehicle.brand} {vehicle.model}
+                {vehicle.brand}
+                {' '}
+                {vehicle.model}
               </td>
               <td>{vehicle.price}</td>
               <td>
@@ -45,7 +47,7 @@ function DeleteVehicle() {
                     Delete
                   </button>
                 ) : (
-                  "This vehicle has been marked"
+                  'This vehicle has been marked'
                 )}
               </td>
             </tr>
