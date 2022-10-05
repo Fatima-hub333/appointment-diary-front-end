@@ -25,7 +25,7 @@ const vehiclesReducer = function reducer(state = [], action = {}) {
     case VEHICLEDETAILS: {
       const current = action.payload;
       const VehicleDetails = state.filter(
-        (vehicle) => vehicle.id === current.id
+        (vehicle) => vehicle.id === current.id,
       );
       return [...VehicleDetails];
     }
@@ -38,7 +38,7 @@ const vehiclesReducer = function reducer(state = [], action = {}) {
         return tempVehicle;
       });
       const newVisible = state.visible.filter(
-        (vehicle) => vehicle.id !== action.payload
+        (vehicle) => vehicle.id !== action.payload,
       );
       return { ...state, all: newAll, visible: newVisible };
     }
@@ -49,20 +49,19 @@ const vehiclesReducer = function reducer(state = [], action = {}) {
   }
 };
 
-export const addVehicle =
-  (brand, model, price, image, description) => async (dispatch) => {
-    await newVehicle(brand, model, price, image, description);
-    dispatch({
-      type: ADDVEHICLE,
-      payload: {
-        brand,
-        model,
-        price,
-        image,
-        description,
-      },
-    });
-  };
+export const addVehicle = (brand, model, price, image, description) => async (dispatch) => {
+  await newVehicle(brand, model, price, image, description);
+  dispatch({
+    type: ADDVEHICLE,
+    payload: {
+      brand,
+      model,
+      price,
+      image,
+      description,
+    },
+  });
+};
 
 export const vehicleDetail = (vehicle) => ({
   type: VEHICLEDETAILS,
@@ -82,7 +81,7 @@ export const getVehicleDetails = (id) => async (dispatch) => {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-    }
+    },
   );
   const res = await response.json();
   const data = await res.data;
