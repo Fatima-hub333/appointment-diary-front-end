@@ -1,57 +1,74 @@
+/* eslint-disable no-unused-vars */
 import client from '../../utils/client';
 
 const token = '4usnywFP4xGPPsEDmfAy'; // to be passed from user state
 
-const ADDRESERVATION = 'bookit/reservations/ADDRESERVATION';
-const LOADRESERVATIONS = 'bookit/reservations/ LOADRESERVATIONS';
+const LOAD_SUCCESS = 'book-vehicle/reservations/LOAD_SUCCESS';
+const LOAD_FALURE = 'book-vehicle/reservations/LOAD_FALURE';
 
-export default function reducer(state = [], action = {}) {
+const ADDRESERVATION_SUCCESS = 'book-vehicle/reservations/ADDRESERVATION_SUCCESS';
+const ADDRESERVATION_FAILURE = 'book-vehicle/reservations/ADDRESERVATION_FAILURE';
+
+export default function reducer(state = { reservations: [], error: undefined }, action = {}) {
   switch (action.type) {
-    case LOADRESERVATIONS: {
-      return [...state, ...action.payload];
+    case LOAD_SUCCESS: {
+      return { ...state, reservations: [...action.payload], error: undefined };
     }
-    case ADDRESERVATION: {
-      const reservation = { ...action.payload, id: Date.now() };
-      return [...state, reservation];
+    case LOAD_FALURE: {
+      return { ...state, reservations: [], error: action.payload };
+    }
+    case ADDRESERVATION_SUCCESS: {
+      const {
+        city, date, vehicle_id: vehicleId,
+      } = action.payload;
+      const reservation = {
+        id: Date.now,
+        city,
+        date,
+        vehicle_id: vehicleId,
+      };
+      return { reservations: [...state.reservations, reservation] };
+    }
+    case ADDRESERVATION_FAILURE: {
+      return {
+        ...state,
+        error: action.payload,
+      };
     }
     default:
       return state;
   }
 }
 
-export const addReservation = (reservation) => ({
-  type: ADDRESERVATION,
-  payload: reservation,
-});
+export const loadReservations = () => ((dispatch) => client
+  .get('/reservations').then(
+    (response) => {
+      dispatch({
+        type: LOAD_SUCCESS,
+        payload: response.data.reservations,
+      });
+    },
+    (error) => {
+      dispatch({
+        type: LOAD_FALURE,
+        payload: error.response?.data || error.messsage,
+      });
+    },
+  ));
 
-export const loadReservation = (reservations) => ({
-  type: LOADRESERVATIONS,
-  payload: reservations,
-});
+export const addReservation = (reservation) => ((dispatch) => client
+  .post('/reservations', reservation).then(
+    () => {
+      dispatch({
+        type: ADDRESERVATION_SUCCESS,
+        payload: reservation,
+      });
+    },
+    (error) => {
+      dispatch({
+        type: ADDRESERVATION_FAILURE,
+        payload: error?.message,
+      });
+    },
 
-export const getReservations = () => async (dispatch) => {
-  const payload = {
-    authentication_token: token,
-  };
-  const response = await client.get('/api/v1/reservations', {
-    params: payload,
-  });
-  const res = response.data;
-  dispatch(loadReservation(res.data));
-};
-
-export const postReservation = (reservation) => async (dispatch) => {
-  const id = reservation.vehicle_id;
-  const payload = {
-    authentication_token: token,
-    city: reservation.city,
-    date: reservation.date,
-  };
-  const data = JSON.stringify(payload);
-  const response = await client.post(
-    `/api/v1/vehicles/${id}/reservations`,
-    data,
-  );
-  const res = response.data;
-  dispatch(addReservation(res.data));
-};
+  ));
