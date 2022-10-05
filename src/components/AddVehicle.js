@@ -67,6 +67,7 @@ function AddVehicle() {
             <div className={`image-panel ${!image && 'dotted'}`}>
               <input type="file" onChange={onSelectFile} />
               {image ? (
+
                 <img src={image} alt="Vehicle" className="img-fluid" />
               ) : (
                 <>

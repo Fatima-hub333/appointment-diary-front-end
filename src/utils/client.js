@@ -6,7 +6,6 @@ const BASEURL = 'https://book-vehicle.herokuapp.com';
 
 const client = axios.create({
   baseURL: BASEURL,
-  timeout: 3000,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
