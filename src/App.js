@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <NavigationPanel />
       <Routes>
-        <Route path="/" element={<VehicleDetails />} />
+        <Route path="/" element={<Reserve />} />
         <Route path="/sign_up" element={<SignUp />} />
         <Route path="/main" element={<Vehicles />} />
         <Route path="/vehicles" element={<DeleteVehicle />} />

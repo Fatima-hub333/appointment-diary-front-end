@@ -4,27 +4,26 @@ import {
   Container, Row, Col, Form, Button,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { addReservation } from '../redux/reservations/reservations';
+import { postReservation } from '../redux/reservations/reservations';
 
 function Reserve() {
   const dispatch = useDispatch();
   const { vehicleId: urlVehicleId } = useParams();
-  const vehicles = useSelector((state) => state.vehicles.visible);
+  const vehicles = useSelector((state) => state.vehicles);
   const user = useSelector((state) => state.user.user);
 
   const [reservation, setReserve] = useState({ user_id: user.id });
-  const {
-    city, date, vehicle_id: vehicleId,
-  } = reservation;
+  const { city, date, vehicle_id: vehicleId } = reservation;
 
   const handleChange = (e) => {
     setReserve({
-      ...reservation, [e.target.name]: e.target.value,
+      ...reservation,
+      [e.target.name]: e.target.value,
     });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addReservation(reservation));
+    dispatch(postReservation(reservation));
   };
 
   return (
@@ -41,25 +40,38 @@ function Reserve() {
                 required
                 disabled={urlVehicleId !== undefined}
               >
-                <option value="" hidden>Select Vehicle</option>
+                <option value="" hidden>
+                  Select Vehicle
+                </option>
                 {vehicles.map((vehicle) => (
-                  <option
-                    key={vehicle.id}
-                    value={vehicle.id}
-                  >
-                    {vehicle.name}
+                  <option key={vehicle.id} value={vehicle.id}>
+                    {vehicle.brand}
                   </option>
                 ))}
               </Form.Select>
             </Row>
             <Row>
-              <Form.Control type="text" placeholder="City" name="city" value={city} onChange={handleChange} />
+              <Form.Control
+                type="text"
+                placeholder="City"
+                name="city"
+                value={city}
+                onChange={handleChange}
+              />
             </Row>
             <Row>
-              <Form.Control type="dateTime-local" placeholder="Date" name="date" value={date} onChange={handleChange} />
+              <Form.Control
+                type="dateTime-local"
+                placeholder="Date"
+                name="date"
+                value={date}
+                onChange={handleChange}
+              />
             </Row>
             <Row>
-              <Button variant="primary" type="submit">Reserve</Button>
+              <Button variant="primary" type="submit">
+                Reserve
+              </Button>
             </Row>
           </Col>
         </Row>
