@@ -3,13 +3,13 @@ import client from '../../utils/client';
 import TokenManager from '../../utils/tokenManger';
 import UserObjectManager from '../../utils/userObjectManager';
 
-const LOGIN_REQUEST = 'bookit/userSessions/LOGIN_REQUEST';
-const LOGIN_SUCCESS = 'bookit/userSessions/LOGIN_SUCCESS';
-const LOGIN_FAILURE = 'bookit/userSessions/LOGIN_FAILURE';
-const LOGOUT_REQUEST = 'bookit/userSessions/LOGOUT_REQUEST';
-const LOGOUT_SUCCESS = 'bookit/userSessions/LOGOUT_SUCCESS';
-const LOGOUT_ERROR = 'bookit/userSessions/LOGOUT_ERROR';
-const SET_USER = 'bookit/userSessions/SET_USER';
+const LOGIN_REQUEST = 'book-vehicle/userSessions/LOGIN_REQUEST';
+const LOGIN_SUCCESS = 'book-vehicle/userSessions/LOGIN_SUCCESS';
+const LOGIN_FAILURE = 'book-vehicle/userSessions/LOGIN_FAILURE';
+const LOGOUT_REQUEST = 'book-vehicle/userSessions/LOGOUT_REQUEST';
+const LOGOUT_SUCCESS = 'book-vehicle/userSessions/LOGOUT_SUCCESS';
+const LOGOUT_ERROR = 'book-vehicle/userSessions/LOGOUT_ERROR';
+const SET_USER = 'book-vehicle/userSessions/SET_USER';
 
 const initialUser = {
   id: null,
