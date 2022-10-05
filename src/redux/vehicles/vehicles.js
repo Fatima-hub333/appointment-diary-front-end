@@ -1,92 +1,162 @@
-// import client from '../../utils/client';
-import listVehicles, { newVehicle, removeVehicle } from './api';
+import client from '../../utils/client';
 
-const token = '4usnywFP4xGPPsEDmfAy';
+const CLEAR_MESSAGES = 'book-vehicle/vehicles/CLEAR_MESSAGES';
+const LOAD_SUCCESS = 'book-vehicle/vehicles/LOAD_SUCCESS';
+const LOAD_FALURE = 'book-vehicle/vehicles/LOAD_FALURE';
+const SHOW_SUCCESS = 'book-vehicle/vehicles/SHOW_SUCCESS';
+const SHOW_FALURE = 'book-vehicle/vehicles/SHOW_FALURE';
+const ADDVEHICLE_SUCCESS = 'book-vehicle/vehicles/ADDVEHICLE_SUCCESS';
+const ADDVEHICLE_FALURE = 'book-vehicle/vehicles/ADDVEHICLE_FALURE';
+const DELETEVEHICLE_SUCCESS = 'book-vehicle/vehicles/DELETEVEHICLE_SUCCESS';
+const DELETEVEHICLE_FAILURE = 'book-vehicle/vehicles/DELETEVEHICLE_FAILURE';
 
-const VEHICLEDETAILS = 'bookit/vehicles/VEHICLEDETAILS';
-const ADDVEHICLE = 'bookit/vehicles/ADDVEHICLE';
-export const DELETEVEHICLE = 'bookit/vehicles/DELETEVEHICLE';
-const LISTALLVEHICLES = 'bookit/vehicles/LISTALLVEHICLES';
+export default function reducer(state = {
+  visible: [],
+  all: [],
 
-const vehiclesReducer = function reducer(state = [], action = {}) {
+  current: undefined,
+  errors: [],
+  notice: undefined,
+}, action = {}) {
   switch (action.type) {
-    case ADDVEHICLE: {
-      return [
+    case LOAD_SUCCESS: {
+      return {
         ...state,
-        {
-          brand: action.payload.brand,
-          model: action.payload.model,
-          price: action.payload.price,
-          image: action.payload.image,
-          description: action.payload.description,
+        all: action.payload,
+        visible: action.payload.filter((vehicle) => vehicle.visible),
+        errors: [],
+      };
+    }
+    case LOAD_FALURE: {
+      return {
+        ...state,
+        visible: [],
+        all: [],
+        errors: [action.payload],
+      };
+    }
+    case SHOW_SUCCESS: {
+      return {
+        ...state,
+        current: action.payload,
+        errors: [],
+      };
+    }
+    case SHOW_FALURE: {
+      return {
+        ...state,
+        current: undefined,
+        errors: [action.payload],
+      };
+    }
+    case ADDVEHICLE_SUCCESS: {
+      return {
+        ...state,
+        notice: action.payload,
+      };
+    }
+    case ADDVEHICLE_FALURE: {
+      return {
+        ...state,
+        notice: undefined,
+        errors: action.payload,
+      };
+    }
+    case DELETEVEHICLE_SUCCESS: {
+      const newAll = state.all.map(
+        (vehicle) => {
+          const tempVehicle = { ...vehicle };
+          if (vehicle.id === action.payload) { tempVehicle.visible = false; }
+          return tempVehicle;
         },
-      ];
-    }
-    case VEHICLEDETAILS: {
-      const current = action.payload;
-      const VehicleDetails = state.filter(
-        (vehicle) => vehicle.id === current.id,
       );
-      return [...VehicleDetails];
+      const newVisible = state.visible.filter(
+        (vehicle) => vehicle.id !== action.payload,
+      );
+      return { ...state, all: newAll, visible: newVisible };
     }
-    case DELETEVEHICLE: {
-      return state.filter((vehicle) => vehicle.id !== action.payload.id);
+    case DELETEVEHICLE_FAILURE: {
+      return {
+        ...state,
+        errors: [action.payload],
+      };
     }
-    case LISTALLVEHICLES:
-      return [...state, ...action.payload];
+    case CLEAR_MESSAGES: {
+      return {
+        ...state,
+        errors: [],
+        notice: undefined,
+      };
+    }
     default:
       return state;
   }
-};
+}
 
-const addVehicle = (brand, model, price, image, description, visible) => async (dispatch) => {
-  await newVehicle(brand, model, price, image, description, visible);
-  dispatch({
-    type: ADDVEHICLE,
-    payload: {
-      brand,
-      model,
-      price,
-      image,
-      description,
-      visible,
+export const loadVehicles = () => ((dispatch) => client
+  .get('/vehicles').then(
+    (response) => {
+      dispatch({
+        type: LOAD_SUCCESS,
+        payload: response.data.vehicles,
+      });
     },
-  });
-};
+    (error) => {
+      dispatch({
+        type: LOAD_FALURE,
+        payload: error.response?.data || error.messsage,
+      });
+    },
+  ));
 
-export const vehicleDetail = (vehicle) => ({
-  type: VEHICLEDETAILS,
-  payload: vehicle,
-});
-// export const deleteVehicle = (vehicleId) => ({
-//   type: DELETEVEHICLE,
-//   payload: vehicleId,
-// });
+export const showVehicle = (vehicleId) => ((dispatch) => client
+  .get(`/vehicles/${vehicleId}`).then(
+    (response) => {
+      dispatch({
+        type: SHOW_SUCCESS,
+        payload: response.data,
+      });
+    },
+    (error) => {
+      dispatch({
+        type: SHOW_FALURE,
+        payload: error.response?.data || error.messsage,
+      });
+    },
+  ));
 
-export const getVehicleDetails = (id) => async (dispatch) => {
-  const response = await fetch(
-    `https://book-vehicle.herokuapp.com/api/v1/vehicles/${id}?authentication_token=${token}`,
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
+export const addVehicle = (vehicle) => ((dispatch) => {
+  dispatch({ type: CLEAR_MESSAGES });
+  return client
+    .post('/vehicles', vehicle).then(
+      (response) => {
+        dispatch({
+          type: ADDVEHICLE_SUCCESS,
+          payload: response.data.message,
+        });
       },
+      (error) => {
+        dispatch({
+          type: ADDVEHICLE_FALURE,
+          payload: error.response?.data.error.split('. ') || [error.messsage],
+        });
+      },
+    );
+});
+
+export const deleteVehicle = (vehicleId) => ((dispatch) => client
+  // .patch('/vehicles/${vehicleId}', vehicleId).then(
+  .patch(`/vehicles/${vehicleId}`, { visible: false }).then(
+    () => {
+      dispatch({
+        type: DELETEVEHICLE_SUCCESS,
+        payload: vehicleId,
+      });
     },
-  );
-  const res = await response.json();
-  const data = await res.data;
-  dispatch(vehicleDetail(data));
-};
-export const listAllVehicles = () => async (dispatch) => {
-  const vehicles = await listVehicles();
-  dispatch({ type: LISTALLVEHICLES, payload: vehicles });
-};
-
-export const deleteVehicle = (id) => async (dispatch) => {
-  await removeVehicle(id);
-  dispatch({ type: DELETEVEHICLE, payload: { id } });
-};
-
-export default vehiclesReducer;
-export { addVehicle };
+    (error) => {
+      dispatch({
+        type: DELETEVEHICLE_FAILURE,
+        payload: error?.message,
+      });
+    },
+  ));
