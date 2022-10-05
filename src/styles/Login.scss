@@ -1,10 +1,13 @@
+@use "sass:color";
+@use "../index.sass" as vars;
+
 .form-container {
   width: 25vw;
   min-width: 450px;
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -60%);
   padding: 1.75rem 1.25rem;
   border-radius: 1.8rem;
   border: 1px solid #e5e5e5;
@@ -19,12 +22,12 @@
   }
 
   a {
-    color: var(--primary-color);
+    color: #98bf11;
     text-decoration: none;
     font-weight: 500;
 
     &:hover {
-      color: var(--primary-color-hover);
+      color: #c3cba6;
     }
   }
 }
