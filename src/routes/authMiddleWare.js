@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { Navigate, Outlet } from 'react-router';
 import PropTypes from 'prop-types';
@@ -8,6 +9,10 @@ const AuthMiddleWare = ({
   layout: Layout,
   isAuthProtected,
 }) => {
+  console.log(isAuthProtected);
+
+  console.log(TokenManager.hasToken());
+
   if (isAuthProtected && !TokenManager.hasToken()) {
     return <Navigate to={{ pathname: '/login' }} />;
   }

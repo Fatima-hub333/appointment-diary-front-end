@@ -2,11 +2,11 @@ import client from '../../utils/client';
 
 const UPLOADCARE_PUB_KEY = '1e97b9a419c0477cb399';
 
-const AUTH_SUCCESS = 'bookit/uploadcare/LOAD_SUCCESS';
-const AUTH_FALURE = 'bookit/uploadcare/LOAD_FALURE';
-const UPLOAD = 'bookit/uploadcare/UPLOAD';
-const UPLOAD_SUCCESS = 'bookit/uploadcare/UPLOAD_SUCCESS';
-const UPLOAD_FAILURE = 'bookit/uploadcare/UPLOAD_FAILURE';
+const AUTH_SUCCESS = 'book-vehicle/uploadcare/LOAD_SUCCESS';
+const AUTH_FALURE = 'book-vehicle/uploadcare/LOAD_FALURE';
+const UPLOAD = 'book-vehicle/uploadcare/UPLOAD';
+const UPLOAD_SUCCESS = 'book-vehicle/uploadcare/UPLOAD_SUCCESS';
+const UPLOAD_FAILURE = 'book-vehicle/uploadcare/UPLOAD_FAILURE';
 
 export default function reducer(state = {
   auth: {},
@@ -80,7 +80,7 @@ export const uploadFile = (auth, file) => ((dispatch) => {
         type: UPLOAD_SUCCESS,
         payload: {
           id,
-          url: `https://ucarecdn.com/${id}/${file.name.replace(' ', '_')}`,
+          url: `https://ucarecdn.com/${id}/${file.name}`,
         },
       });
     }),
