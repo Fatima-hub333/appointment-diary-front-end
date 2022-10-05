@@ -1,10 +1,11 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
 import Table from 'react-bootstrap/Table';
 import '../styles/MyReservations.scss';
 
 function MyReservations() {
-  const reservations = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((x) => ({
-    id: x, vehicle: { name: `vehicle ${x}` }, date: new Date().toISOString().substring(0, 10), city: 'Millan',
-  }));
+  const reservations = useSelector((state) => state.reservations);
+
   return (
     <div className="MyReservations">
       <h1 className="text-center">My reservations</h1>
@@ -19,7 +20,10 @@ function MyReservations() {
         <tbody>
           {reservations.map((reservation) => (
             <tr key={reservation.id}>
-              <td>{reservation.vehicle.name}</td>
+              <td>
+                {reservation.vehicle_id /* update to brand */}
+                {' '}
+              </td>
               <td>{reservation.date}</td>
               <td>{reservation.city}</td>
             </tr>
