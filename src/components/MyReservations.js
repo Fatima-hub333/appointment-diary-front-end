@@ -5,6 +5,7 @@ import '../styles/MyReservations.scss';
 
 function MyReservations() {
   const reservations = useSelector((state) => state.reservations);
+  const vehicles = useSelector((state) => state.vehicles);
 
   return (
     <div className="MyReservations">
@@ -20,10 +21,14 @@ function MyReservations() {
         <tbody>
           {reservations.map((reservation) => (
             <tr key={reservation.id}>
-              <td>
-                {reservation.vehicle_id /* update to brand */}
-                {' '}
-              </td>
+              {vehicles.map((vehicle) => (vehicle.id === reservation.vehicle_id ? (
+                <td>
+                  {vehicle.brand}
+                  {' '}
+                </td>
+              ) : (
+                <></>
+              )))}
               <td>{reservation.date}</td>
               <td>{reservation.city}</td>
             </tr>
