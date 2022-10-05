@@ -1,34 +1,46 @@
-import { Route, Routes } from 'react-router';
-import NavigationPanel from './components/NavigationPanel';
-import Login from './components/LoginForm';
-import SignUp from './components/SignUp';
-import Vehicles from './components/Vehicles';
-import DeleteVehicle from './components/DeleteVehicle';
-import VehicleDetails from './components/VehicleDetails';
-import Reserve from './components/Reserve';
-import MyReservations from './components/MyReservations';
-import AddVehicle from './components/AddVehicle';
+import { Routes, Route } from 'react-router';
+import { ToastContainer } from 'react-toastify';
+
+import { publicRoutes, authProtectedRoutes } from './routes';
+import AuthMiddleWare from './routes/authMiddleWare';
+import AuthLayout from './layout/AuthLayout';
+import NoAuthLayout from './layout/NoAuthLayout';
+
+import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <NavigationPanel />
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/sign_up" element={<SignUp />} />
-        <Route path="/main" element={<Vehicles />} />
-        <Route path="/vehicles" element={<DeleteVehicle />} />
-        <Route path="/vehicle" element={<AddVehicle />} />
-        <Route
-          path="/vehicles/:vehicleId/details"
-          element={<VehicleDetails />}
-        />
-        <Route path="/vehicles/:vehicleId/reservation" element={<Reserve />} />
-        <Route path="/reservation" element={<Reserve />} />
-        <Route path="/user/reservations" element={<MyReservations />} />
-        <Route path="*" element={<div> Error: 404 undefined route</div>} />
+        <Route element={<AuthMiddleWare layout={AuthLayout} isAuthProtected />}>
+          {authProtectedRoutes.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={<route.component />}
+            />
+          ))}
+        </Route>
+        <Route element={<AuthMiddleWare layout={NoAuthLayout} isAuthProtected={false} />}>
+          {publicRoutes.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={<route.component />}
+            />
+          ))}
+        </Route>
       </Routes>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

@@ -58,20 +58,16 @@ const signupFailure = (error) => ({
   payload: error,
 });
 
-export const signup = (userData) => async (dispatch) => {
+export const signup = (userData, navigate) => async (dispatch) => {
   dispatch(signupRequest());
   try {
     const user = userData;
-    user.roles = ['user'];
-
-    const data = JSON.stringify(user);
-    const response = await client.post('/users', data);
-
-    const res = response.data;
-    const payload = res.data;
-
-    dispatch(signupSuccess(payload));
-    // navigate('/');
+    user.role = 'user';
+    const payload = { user };
+    const response = await client.post('users', payload);
+    const { data } = response.data;
+    dispatch(signupSuccess(data));
+    navigate('/');
     toast.success('Signup successful');
   } catch (error) {
     dispatch(signupFailure(error.message));
