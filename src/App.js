@@ -1,12 +1,9 @@
 import { Routes, Route } from 'react-router';
-import { ToastContainer } from 'react-toastify';
-
 import { publicRoutes, authProtectedRoutes } from './routes';
 import AuthMiddleWare from './routes/authMiddleWare';
 import AuthLayout from './layout/AuthLayout';
 import NoAuthLayout from './layout/NoAuthLayout';
 
-import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 
 function App() {
@@ -32,15 +29,6 @@ function App() {
           ))}
         </Route>
       </Routes>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={5000}
-        hideProgressBar
-        closeOnClick
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </div>
   );
 }
