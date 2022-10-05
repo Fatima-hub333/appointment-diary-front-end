@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { signup } from '../redux/user/userRegistrations';
+import { signup } from '../redux/userRegistrations/userRegistrations';
 
 function SignUpForm() {
   const dispatch = useDispatch();
