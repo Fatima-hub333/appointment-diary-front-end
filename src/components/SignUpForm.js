@@ -14,53 +14,53 @@ function SignUpForm() {
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group className="mb-3" controlId="formBasicName">
+        <Form.Group className='mb-3' controlId='formBasicName'>
           <Form.Label>Username</Form.Label>
           <Form.Control
-            type="text"
+            type='text'
             {...register('name')}
-            name="name"
-            placeholder="Enter username"
+            name='name'
+            placeholder='Enter username'
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className='mb-3' controlId='formBasicEmail'>
           <Form.Label>Email address</Form.Label>
           <Form.Control
-            type="email"
+            type='email'
             {...register('email')}
-            name="email"
-            placeholder="Enter email"
+            name='email'
+            placeholder='Enter email'
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className='mb-3' controlId='formBasicPassword'>
           <Form.Label>Password</Form.Label>
           <Form.Control
-            type="password"
+            type='password'
             {...register('password')}
-            name="password"
-            placeholder="Password"
+            name='password'
+            placeholder='Password'
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className='mb-3' controlId='formBasicPassword'>
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
-            type="password"
+            type='password'
             {...register('password_confirmation')}
-            name="password_confirmation"
-            placeholder="Password"
+            name='password_confirmation'
+            placeholder='Password'
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant='primary' type='submit'>
           Submit
         </Button>
       </Form>
       <p>
         <span>Don&apos;t have an account? </span>
-        <Link to="/sign_up">Sign Up Today!</Link>
+        <Link to='/sign_up'>Sign Up Today!</Link>
       </p>
     </>
   );
