@@ -20,6 +20,7 @@ function MyReservations() {
   useEffect(() => {
     dispatch(loadReservations());
   }, [vehicles]);
+
   return (
     <div className="MyReservations">
       <h1 className="text-center">My reservations</h1>
