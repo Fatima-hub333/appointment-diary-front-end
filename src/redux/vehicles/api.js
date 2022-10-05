@@ -11,7 +11,6 @@ const listVehicles = async () => {
   return vehicles;
 };
 
-
 export const newVehicle = async (
   brand,
   model,

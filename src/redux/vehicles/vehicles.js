@@ -1,12 +1,12 @@
 // import client from '../../utils/client';
 import listVehicles, { newVehicle, removeVehicle } from './api';
+
 const token = '4usnywFP4xGPPsEDmfAy';
 
 const VEHICLEDETAILS = 'bookit/vehicles/VEHICLEDETAILS';
 const ADDVEHICLE = 'bookit/vehicles/ADDVEHICLE';
 export const DELETEVEHICLE = 'bookit/vehicles/DELETEVEHICLE';
 const LISTALLVEHICLES = 'bookit/vehicles/LISTALLVEHICLES';
-
 
 const vehiclesReducer = function reducer(state = [], action = {}) {
   switch (action.type) {
@@ -30,7 +30,6 @@ const vehiclesReducer = function reducer(state = [], action = {}) {
       return [...VehicleDetails];
     }
     case DELETEVEHICLE: {
-
       return state.filter((vehicle) => vehicle.id !== action.payload.id);
     }
     case LISTALLVEHICLES:
@@ -59,10 +58,10 @@ export const vehicleDetail = (vehicle) => ({
   type: VEHICLEDETAILS,
   payload: vehicle,
 });
-export const deleteVehicle = (vehicleId) => ({
-  type: DELETEVEHICLE,
-  payload: vehicleId,
-});
+// export const deleteVehicle = (vehicleId) => ({
+//   type: DELETEVEHICLE,
+//   payload: vehicleId,
+// });
 
 export const getVehicleDetails = (id) => async (dispatch) => {
   const response = await fetch(
