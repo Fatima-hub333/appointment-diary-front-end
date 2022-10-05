@@ -12,8 +12,12 @@ function MyReservations() {
   vehicles.forEach((vehicle) => {
     vehicleMap[vehicle.id] = vehicle;
   });
-  const reservations = useSelector((state) => state.reservations.reservations)
-    .map((reservation) => ({ ...reservation, vehicle: vehicleMap[reservation.vehicle_id] }));
+  const reservations = useSelector(
+    (state) => state.reservations.reservations,
+  ).map((reservation) => ({
+    ...reservation,
+    vehicle: vehicleMap[reservation.vehicle_id],
+  }));
   useEffect(() => {
     dispatch(loadReservations());
   }, []);

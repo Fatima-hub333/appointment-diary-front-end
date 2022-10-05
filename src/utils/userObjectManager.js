@@ -8,7 +8,7 @@ class UserObjectManager {
   static setUserObject = (user) => {
     const encryptedUser = crypto.encrypt(JSON.stringify(user));
     localStorage.setItem(UserObjectManager.userHash, encryptedUser);
-  }
+  };
 
   static getUserObject = () => {
     const user = localStorage.getItem(UserObjectManager.userHash);
@@ -16,7 +16,7 @@ class UserObjectManager {
       return JSON.parse(crypto.decrypt(user));
     }
     return null;
-  }
+  };
 
   static destroyUserObject = () => localStorage.removeItem(UserObjectManager.userHash);
 

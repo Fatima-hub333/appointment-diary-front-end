@@ -16,7 +16,8 @@ function Login() {
 
   const handleChange = (e) => {
     setUser({
-      ...user, [e.target.name]: e.target.value,
+      ...user,
+      [e.target.name]: e.target.value,
     });
   };
 

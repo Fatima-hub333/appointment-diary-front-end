@@ -10,14 +10,17 @@ const ADDVEHICLE_FALURE = 'book-vehicle/vehicles/ADDVEHICLE_FALURE';
 const DELETEVEHICLE_SUCCESS = 'book-vehicle/vehicles/DELETEVEHICLE_SUCCESS';
 const DELETEVEHICLE_FAILURE = 'book-vehicle/vehicles/DELETEVEHICLE_FAILURE';
 
-export default function reducer(state = {
-  visible: [],
-  all: [],
+export default function reducer(
+  state = {
+    visible: [],
+    all: [],
 
-  current: undefined,
-  errors: [],
-  notice: undefined,
-}, action = {}) {
+    current: undefined,
+    errors: [],
+    notice: undefined,
+  },
+  action = {},
+) {
   switch (action.type) {
     case LOAD_SUCCESS: {
       return {
@@ -63,13 +66,13 @@ export default function reducer(state = {
       };
     }
     case DELETEVEHICLE_SUCCESS: {
-      const newAll = state.all.map(
-        (vehicle) => {
-          const tempVehicle = { ...vehicle };
-          if (vehicle.id === action.payload) { tempVehicle.visible = false; }
-          return tempVehicle;
-        },
-      );
+      const newAll = state.all.map((vehicle) => {
+        const tempVehicle = { ...vehicle };
+        if (vehicle.id === action.payload) {
+          tempVehicle.visible = false;
+        }
+        return tempVehicle;
+      });
       const newVisible = state.visible.filter(
         (vehicle) => vehicle.id !== action.payload,
       );
@@ -93,60 +96,58 @@ export default function reducer(state = {
   }
 }
 
-export const loadVehicles = () => ((dispatch) => client
-  .get('/vehicles').then(
-    (response) => {
-      dispatch({
-        type: LOAD_SUCCESS,
-        payload: response.data.vehicles,
-      });
-    },
-    (error) => {
-      dispatch({
-        type: LOAD_FALURE,
-        payload: error.response?.data || error.messsage,
-      });
-    },
-  ));
+export const loadVehicles = () => (dispatch) => client.get('/vehicles').then(
+  (response) => {
+    dispatch({
+      type: LOAD_SUCCESS,
+      payload: response.data.vehicles,
+    });
+  },
+  (error) => {
+    dispatch({
+      type: LOAD_FALURE,
+      payload: error.response?.data || error.messsage,
+    });
+  },
+);
 
-export const showVehicle = (vehicleId) => ((dispatch) => client
-  .get(`/vehicles/${vehicleId}`).then(
-    (response) => {
-      dispatch({
-        type: SHOW_SUCCESS,
-        payload: response.data,
-      });
-    },
-    (error) => {
-      dispatch({
-        type: SHOW_FALURE,
-        payload: error.response?.data || error.messsage,
-      });
-    },
-  ));
+export const showVehicle = (vehicleId) => (dispatch) => client.get(`/vehicles/${vehicleId}`).then(
+  (response) => {
+    dispatch({
+      type: SHOW_SUCCESS,
+      payload: response.data,
+    });
+  },
+  (error) => {
+    dispatch({
+      type: SHOW_FALURE,
+      payload: error.response?.data || error.messsage,
+    });
+  },
+);
 
-export const addVehicle = (vehicle) => ((dispatch) => {
+export const addVehicle = (vehicle) => (dispatch) => {
   dispatch({ type: CLEAR_MESSAGES });
-  return client
-    .post('/vehicles', vehicle).then(
-      (response) => {
-        dispatch({
-          type: ADDVEHICLE_SUCCESS,
-          payload: response.data.message,
-        });
-      },
-      (error) => {
-        dispatch({
-          type: ADDVEHICLE_FALURE,
-          payload: error.response?.data.error.split('. ') || [error.messsage],
-        });
-      },
-    );
-});
+  return client.post('/vehicles', vehicle).then(
+    (response) => {
+      dispatch({
+        type: ADDVEHICLE_SUCCESS,
+        payload: response.data.message,
+      });
+    },
+    (error) => {
+      dispatch({
+        type: ADDVEHICLE_FALURE,
+        payload: error.response?.data.error.split('. ') || [error.messsage],
+      });
+    },
+  );
+};
 
-export const deleteVehicle = (vehicleId) => ((dispatch) => client
-  // .patch('/vehicles/${vehicleId}', vehicleId).then(
-  .patch(`/vehicles/${vehicleId}`, { visible: false }).then(
+export const deleteVehicle = (vehicleId) => (dispatch) => client
+// .patch('/vehicles/${vehicleId}', vehicleId).then(
+  .patch(`/vehicles/${vehicleId}`, { visible: false })
+  .then(
     () => {
       dispatch({
         type: DELETEVEHICLE_SUCCESS,
@@ -159,4 +160,4 @@ export const deleteVehicle = (vehicleId) => ((dispatch) => client
         payload: error?.message,
       });
     },
-  ));
+  );

@@ -22,7 +22,11 @@ function App() {
             />
           ))}
         </Route>
-        <Route element={<AuthMiddleWare layout={NoAuthLayout} isAuthProtected={false} />}>
+        <Route
+          element={
+            <AuthMiddleWare layout={NoAuthLayout} isAuthProtected={false} />
+          }
+        >
           {publicRoutes.map((route) => (
             <Route
               key={route.path}

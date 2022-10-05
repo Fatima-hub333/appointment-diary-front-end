@@ -11,17 +11,27 @@ import '../styles/NavigationPanel.scss';
 function NavigationPanel() {
   const user = useSelector((state) => state.userSessions.user);
   const location = useLocation();
-  const [isMenuOpen, setIsMenuOpen] = useState(!['/', '/sign_up'].includes(location.pathname));
+  const [isMenuOpen, setIsMenuOpen] = useState(
+    !['/', '/sign_up'].includes(location.pathname),
+  );
   useEffect(() => {
     if (['/login', '/signup'].includes(location.pathname)) setIsMenuOpen(false);
   }, [location]);
   return (
     <div className={`NavigationPanel ${isMenuOpen ? 'open' : ''}`}>
       <div className="nav-container">
-        <MdMenu className="nav-menu-icon" onClick={() => setIsMenuOpen(!isMenuOpen)} />
-        <MdClose className="nav-close-icon" onClick={() => setIsMenuOpen(!isMenuOpen)} />
+        <MdMenu
+          className="nav-menu-icon"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        />
+        <MdClose
+          className="nav-close-icon"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        />
         <div className="nav-collalpse">
-          <NavLink className="nav-brand" to="/main">Vespa</NavLink>
+          <NavLink className="nav-brand" to="/main">
+            Vespa
+          </NavLink>
           <nav>
             <ul>
               <li>

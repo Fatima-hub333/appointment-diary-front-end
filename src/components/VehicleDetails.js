@@ -16,7 +16,13 @@ function VehicleDetails() {
     <div className="vehiDetails">
       <div className="details-container row align-content-center">
         <div className="details-card col-lg-8">
-          {vehicle && <img className="card-img-det img-fluid" src={vehicle.image} alt="Card cap" />}
+          {vehicle && (
+            <img
+              className="card-img-det img-fluid"
+              src={vehicle.image}
+              alt="Card cap"
+            />
+          )}
         </div>
         <div className="details-info-container col-lg-4">
           <div className="card-body">
@@ -30,8 +36,13 @@ function VehicleDetails() {
             <p>About this vehicle</p>
             <p>{vehicle?.description}</p>
           </div>
-          <Link to={vehicle && `/vehicles/${vehicle.id}/reservation`} className="link-button">
-            <button type="submit" className="btn btn-primary add-btn mx-auto">Add to reservation</button>
+          <Link
+            to={vehicle && `/vehicles/${vehicle.id}/reservation`}
+            className="link-button"
+          >
+            <button type="submit" className="btn btn-primary add-btn mx-auto">
+              Add to reservation
+            </button>
           </Link>
         </div>
       </div>

@@ -9,7 +9,10 @@ const LOAD_FALURE = 'book-vehicle/reservations/LOAD_FALURE';
 const ADDRESERVATION_SUCCESS = 'book-vehicle/reservations/ADDRESERVATION_SUCCESS';
 const ADDRESERVATION_FAILURE = 'book-vehicle/reservations/ADDRESERVATION_FAILURE';
 
-export default function reducer(state = { reservations: [], error: undefined }, action = {}) {
+export default function reducer(
+  state = { reservations: [], error: undefined },
+  action = {},
+) {
   switch (action.type) {
     case LOAD_SUCCESS: {
       return { ...state, reservations: [...action.payload], error: undefined };
@@ -18,9 +21,7 @@ export default function reducer(state = { reservations: [], error: undefined }, 
       return { ...state, reservations: [], error: action.payload };
     }
     case ADDRESERVATION_SUCCESS: {
-      const {
-        city, date, vehicle_id: vehicleId,
-      } = action.payload;
+      const { city, date, vehicle_id: vehicleId } = action.payload;
       const reservation = {
         id: Date.now,
         city,
@@ -40,35 +41,32 @@ export default function reducer(state = { reservations: [], error: undefined }, 
   }
 }
 
-export const loadReservations = () => ((dispatch) => client
-  .get('/reservations').then(
-    (response) => {
-      dispatch({
-        type: LOAD_SUCCESS,
-        payload: response.data.reservations,
-      });
-    },
-    (error) => {
-      dispatch({
-        type: LOAD_FALURE,
-        payload: error.response?.data || error.messsage,
-      });
-    },
-  ));
+export const loadReservations = () => (dispatch) => client.get('/reservations').then(
+  (response) => {
+    dispatch({
+      type: LOAD_SUCCESS,
+      payload: response.data.reservations,
+    });
+  },
+  (error) => {
+    dispatch({
+      type: LOAD_FALURE,
+      payload: error.response?.data || error.messsage,
+    });
+  },
+);
 
-export const addReservation = (reservation) => ((dispatch) => client
-  .post('/reservations', reservation).then(
-    () => {
-      dispatch({
-        type: ADDRESERVATION_SUCCESS,
-        payload: reservation,
-      });
-    },
-    (error) => {
-      dispatch({
-        type: ADDRESERVATION_FAILURE,
-        payload: error?.message,
-      });
-    },
-
-  ));
+export const addReservation = (reservation) => (dispatch) => client.post('/reservations', reservation).then(
+  () => {
+    dispatch({
+      type: ADDRESERVATION_SUCCESS,
+      payload: reservation,
+    });
+  },
+  (error) => {
+    dispatch({
+      type: ADDRESERVATION_FAILURE,
+      payload: error?.message,
+    });
+  },
+);

@@ -4,7 +4,10 @@ import {
   Container, Row, Col, Form, Button,
 } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { signup, setErrors } from '../redux/userRegistrations/userRegistrations';
+import {
+  signup,
+  setErrors,
+} from '../redux/userRegistrations/userRegistrations';
 import '../styles/Auth.scss';
 
 function SignUp() {
@@ -14,13 +17,19 @@ function SignUp() {
 
   const handleChange = (e) => {
     setUser({
-      ...user, [e.target.name]: e.target.value,
+      ...user,
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (user.username && user.email && user.password && user.passwordConfirmation) {
+    if (
+      user.username
+      && user.email
+      && user.password
+      && user.passwordConfirmation
+    ) {
       if (user.password === user.passwordConfirmation) {
         dispatch(signup(user, navigate));
       } else {

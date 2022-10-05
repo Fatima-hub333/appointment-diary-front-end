@@ -8,12 +8,15 @@ const UPLOAD = 'book-vehicle/uploadcare/UPLOAD';
 const UPLOAD_SUCCESS = 'book-vehicle/uploadcare/UPLOAD_SUCCESS';
 const UPLOAD_FAILURE = 'book-vehicle/uploadcare/UPLOAD_FAILURE';
 
-export default function reducer(state = {
-  auth: {},
-  error: undefined,
-  id: undefined,
-  url: undefined,
-}, action = {}) {
+export default function reducer(
+  state = {
+    auth: {},
+    error: undefined,
+    id: undefined,
+    url: undefined,
+  },
+  action = {},
+) {
   switch (action.type) {
     case AUTH_SUCCESS: {
       return { ...state, auth: action.payload, error: undefined };
@@ -44,23 +47,22 @@ export default function reducer(state = {
   }
 }
 
-export const getAuth = () => ((dispatch) => client
-  .get('/uploadcare/auth_params').then(
-    (response) => {
-      dispatch({
-        type: AUTH_SUCCESS,
-        payload: response.data,
-      });
-    },
-    (error) => {
-      dispatch({
-        type: AUTH_FALURE,
-        payload: error.response?.data || error.messsage,
-      });
-    },
-  ));
+export const getAuth = () => (dispatch) => client.get('/uploadcare/auth_params').then(
+  (response) => {
+    dispatch({
+      type: AUTH_SUCCESS,
+      payload: response.data,
+    });
+  },
+  (error) => {
+    dispatch({
+      type: AUTH_FALURE,
+      payload: error.response?.data || error.messsage,
+    });
+  },
+);
 
-export const uploadFile = (auth, file) => ((dispatch) => {
+export const uploadFile = (auth, file) => (dispatch) => {
   dispatch({
     type: UPLOAD,
   });
@@ -91,4 +93,4 @@ export const uploadFile = (auth, file) => ((dispatch) => {
       });
     },
   );
-});
+};
