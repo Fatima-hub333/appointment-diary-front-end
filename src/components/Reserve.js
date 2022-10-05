@@ -15,6 +15,8 @@ function Reserve() {
   const [reservation, setReserve] = useState({ user_id: user.id });
   const { city, date, vehicle_id: vehicleId } = reservation;
 
+  console.log('VEHICLES FOR RESERVATION: ', vehicles);
+
   const handleChange = (e) => {
     setReserve({
       ...reservation,

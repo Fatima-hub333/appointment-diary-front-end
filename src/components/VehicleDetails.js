@@ -13,19 +13,6 @@ function VehicleDetails() {
     dispatch(getVehicleDetails(9));
   }, [dispatch, id]);
 
-  // const vehicle = {
-  //   id: 9,
-  //   brand: 'G-Wagon',
-  //   model: 'G-Class base',
-  //   price: '120000.0',
-  //   image:
-  //     'https://imgd.aeplcdn.com/1200x900/cw/ec/36129/MercedesBenz-GClass-Exterior-137817.jpg?wm=0&q=75',
-  //   description:
-  //     'The Mercedes-Benz G-Class has finally entered its second generation.',
-  //   created_at: '2022-10-05T02:17:02.528Z',
-  //   updated_at: '2022-10-05T02:17:02.528Z',
-  //   visible: true,
-  // };
   return (
     <div>
       <div>
