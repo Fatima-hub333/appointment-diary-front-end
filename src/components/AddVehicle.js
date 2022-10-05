@@ -15,6 +15,7 @@ function AddVehicle() {
   const {
     price, brand, model, description, image,
   } = vehicle;
+  vehicle.visible = true;
 
   const onSelectFile = (e) => {
     if (!e.target.files || e.target.files.length === 0) {
@@ -43,17 +44,11 @@ function AddVehicle() {
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      addVehicle(
-        vehicle.brand,
-        vehicle.model,
-        vehicle.price,
-        vehicle.image,
-        vehicle.description,
-      ),
-    );
+    dispatch(addVehicle(vehicle.brand, vehicle.model, vehicle.price, vehicle.image,
+      vehicle.description, vehicle.visible));
   };
   return (
     <Form className="AddVehicle" onSubmit={handleSubmit}>
@@ -72,7 +67,8 @@ function AddVehicle() {
             <div className={`image-panel ${!image && 'dotted'}`}>
               <input type="file" onChange={onSelectFile} />
               {image ? (
-                <img src={image} alt="vehicle-name" className="img-fluid" />
+
+                <img src={image} alt="Vehicle" className="img-fluid" />
               ) : (
                 <>
                   Click to select an image
