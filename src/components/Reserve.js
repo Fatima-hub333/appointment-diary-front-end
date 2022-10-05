@@ -1,17 +1,17 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from 'react';
+/* eslint-disable no-console */
+import { useState } from 'react';
 import { useParams } from 'react-router';
 import {
   Container, Row, Col, Form, Button, Alert,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { addReservation } from '../redux/reservations/reservations';
-import { loadVehicles } from '../redux/vehicles/vehicles';
 import '../styles/Reserve.scss';
 
 function Reserve() {
   const dispatch = useDispatch();
   const { vehicleId: urlVehicleId } = useParams();
+  console.log('here', urlVehicleId);
   const vehicles = useSelector((state) => state.vehicles.visible);
   const error = useSelector((state) => state.reservations.error);
 
@@ -29,14 +29,6 @@ function Reserve() {
     e.preventDefault();
     dispatch(addReservation(reservation));
   };
-
-  useEffect(() => {
-    dispatch(loadVehicles());
-  }, []);
-
-  useEffect(() => {
-    setReserve({ ...reservation, vehicle_id: urlVehicleId });
-  }, [urlVehicleId]);
 
   return (
     <div
