@@ -1,45 +1,35 @@
-import React, { useEffect } from 'react';
-import { Navigate, Outlet } from 'react-router';
+/* eslint-disable react/jsx-props-no-spreading */
+import React from 'react';
+import { Route, Redirect } from 'react-router';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../redux/userSessions/userSessions';
 import TokenManager from '../utils/tokenManger';
-import UserObjectManager from '../utils/userObjectManager';
 
 const AuthMiddleWare = ({
-  children,
+  component: Component,
   layout: Layout,
   isAuthProtected,
-}) => {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.userSessions.user);
+  ...rest
+}) => (
+  <Route
+    {...rest}
+    render={(props) => {
+      if (isAuthProtected && !TokenManager.hasToken()) {
+        return <Redirect to={{ pathname: '/login' }} />;
+      }
 
-  useEffect(() => {
-    if (UserObjectManager.hasUserObject() && !user.id) {
-      const userObject = UserObjectManager.getUserObject();
-      dispatch(setUser(userObject));
-    }
-  }, []);
-
-  if (isAuthProtected && !TokenManager.hasToken()) {
-    return <Navigate to={{ pathname: '/login' }} />;
-  }
-
-  if (!isAuthProtected && TokenManager.hasToken()) {
-    return <Navigate to={{ pathname: '/main' }} />;
-  }
-
-  return (
-    <Layout>
-      {children || <Outlet />}
-    </Layout>
-  );
-};
+      return (
+        <Layout>
+          <Component {...props} />
+        </Layout>
+      );
+    }}
+  />
+);
 
 export default AuthMiddleWare;
 
 AuthMiddleWare.propTypes = {
-  children: PropTypes.node.isRequired,
+  component: PropTypes.func.isRequired,
   layout: PropTypes.func.isRequired,
   isAuthProtected: PropTypes.bool.isRequired,
 };
