@@ -50,7 +50,7 @@ function SignUpForm() {
             type="password"
             {...register('password_confirmation')}
             name="password_confirmation"
-            placeholder="Password min 6 characters "
+            placeholder="Password"
           />
         </Form.Group>
 
