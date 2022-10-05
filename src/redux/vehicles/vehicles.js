@@ -1,6 +1,8 @@
 // import client from '../../utils/client';
 import listVehicles, { newVehicle } from './api';
 
+const token = '4usnywFP4xGPPsEDmfAy';
+
 const ADDVEHICLE = 'bookit/vehicles/ADDVEHICLE';
 const DELETEVEHICLE = 'bookit/vehicles/DELETEVEHICLE';
 const LISTALLVEHICLES = 'bookit/vehicles/LISTALLVEHICLES';
@@ -23,7 +25,7 @@ const vehiclesReducer = function reducer(state = [], action = {}) {
     case VEHICLEDETAILS: {
       const current = action.payload;
       const VehicleDetails = state.filter(
-        (vehicle) => vehicle.id === current.id,
+        (vehicle) => vehicle.id === current.id
       );
       return [...VehicleDetails];
     }
@@ -36,7 +38,7 @@ const vehiclesReducer = function reducer(state = [], action = {}) {
         return tempVehicle;
       });
       const newVisible = state.visible.filter(
-        (vehicle) => vehicle.id !== action.payload,
+        (vehicle) => vehicle.id !== action.payload
       );
       return { ...state, all: newAll, visible: newVisible };
     }
@@ -47,19 +49,20 @@ const vehiclesReducer = function reducer(state = [], action = {}) {
   }
 };
 
-export const addVehicle = (brand, model, price, image, description) => async (dispatch) => {
-  await newVehicle(brand, model, price, image, description);
-  dispatch({
-    type: ADDVEHICLE,
-    payload: {
-      brand,
-      model,
-      price,
-      image,
-      description,
-    },
-  });
-};
+export const addVehicle =
+  (brand, model, price, image, description) => async (dispatch) => {
+    await newVehicle(brand, model, price, image, description);
+    dispatch({
+      type: ADDVEHICLE,
+      payload: {
+        brand,
+        model,
+        price,
+        image,
+        description,
+      },
+    });
+  };
 
 export const vehicleDetail = (vehicle) => ({
   type: VEHICLEDETAILS,
@@ -71,14 +74,6 @@ export const deleteVehicle = (vehicleId) => ({
 });
 
 export const getVehicleDetails = (id) => async (dispatch) => {
-  const token = '4usnywFP4xGPPsEDmfAy';
-  // const headers = {
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Accept: 'application/json',
-  //   },
-  // };
-
   const response = await fetch(
     `https://book-vehicle.herokuapp.com/api/v1/vehicles/${id}?authentication_token=${token}`,
     {
@@ -87,13 +82,10 @@ export const getVehicleDetails = (id) => async (dispatch) => {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-    },
+    }
   );
   const res = await response.json();
   const data = await res.data;
-  console.log('SERVER DATA: ', res);
-
-  console.log('RESPONSE PAYLOAD:', data);
   dispatch(vehicleDetail(data));
 };
 export const listAllVehicles = () => async (dispatch) => {

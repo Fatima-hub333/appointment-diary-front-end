@@ -8,8 +8,6 @@ function VehicleDetails() {
   const { id } = useParams();
   const [vehicle] = useSelector((state) => state.vehicles);
 
-  console.log('VEHICLE FROM STATE:', vehicle);
-
   useEffect(() => {
     console.log('PARAM ID: ', id);
     dispatch(getVehicleDetails(9));
@@ -34,11 +32,11 @@ function VehicleDetails() {
         <h1>Vehicle Details</h1>
       </div>
       <div>
-        <div className='details-card'>
-          <img className='card-img-det' src={vehicle.image} alt='Card cap' />
-          <div className='card-body d-flex justify-content-between img-text'>
-            <h5 className='card-title'>{vehicle.name}</h5>
-            <p className='card-text'>{vehicle.price}</p>
+        <div className="details-card">
+          <img className="card-img-det" src={vehicle.image} alt="Card cap" />
+          <div className="card-body d-flex justify-content-between img-text">
+            <h5 className="card-title">{vehicle.brand}</h5>
+            <p className="card-text">{vehicle.price}</p>
           </div>
         </div>
         <div>
@@ -47,7 +45,7 @@ function VehicleDetails() {
         </div>
       </div>
       <Link to={`/vehicles/${vehicle.id}/reservation`}>
-        <button type='submit' className='btn btn-primary add-btn mx-auto'>
+        <button type="submit" className="btn btn-primary add-btn mx-auto">
           Add to reservation
         </button>
       </Link>
