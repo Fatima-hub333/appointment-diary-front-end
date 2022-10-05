@@ -1,10 +1,13 @@
-const Api = "https://book-vehicle.herokuapp.com/api/v1/vehicles";
-const authenticationToken = "zVJzDi87E5yJLxsC2U_h";
+import { useDispatch } from "react-redux";
+import { DELETEVEHICLE } from "./vehicles";
+
+const Api = 'https://book-vehicle.herokuapp.com/api/v1/vehicles';
+const authenticationToken = 'zVJzDi87E5yJLxsC2U_h';
 
 const listVehicles = async () => {
   const vehiclesObj = await fetch(
     `${Api}?authentication_token=${authenticationToken}`,
-    { method: "GET" }
+    { method: 'GET' },
   ).catch((error) => error.message);
   const vehiclesJson = await vehiclesObj.json();
   const vehicles = vehiclesJson.data.map((vehicle) => vehicle);
@@ -17,13 +20,13 @@ export const newVehicle = async (
   price,
   image,
   description,
-  visible
+  visible,
 ) => {
   console.log(brand, model, price, image, description);
   await fetch(Api, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-type": "application/json; charset=UTF-8",
+      'Content-type': 'application/json; charset=UTF-8',
     },
     body: JSON.stringify({
       authentication_token: authenticationToken,
@@ -39,12 +42,8 @@ export const newVehicle = async (
 
 export const removeVehicle = async (id) => {
   console.log(id);
-  await fetch(`${Api}/${id}`, {
-    mode: "no-cors",
+  await fetch(`${Api}/${id}?authentication_token=${authenticationToken}`, {
     method: "DELETE",
-    body: JSON.stringify({
-      authentication_token: authenticationToken,
-    }),
   }).catch((error) => error.message);
 };
 

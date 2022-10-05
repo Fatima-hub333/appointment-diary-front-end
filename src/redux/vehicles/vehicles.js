@@ -1,8 +1,8 @@
-import listVehicles, { newVehicle, removeVehicle } from "./api";
+import listVehicles, { newVehicle, removeVehicle } from './api';
 
-const ADDVEHICLE = "bookit/vehicles/ADDVEHICLE";
-const DELETEVEHICLE = "bookit/vehicles/DELETEVEHICLE";
-const LISTALLVEHICLES = "bookit/vehicles/LISTALLVEHICLES";
+const ADDVEHICLE = 'bookit/vehicles/ADDVEHICLE';
+export const DELETEVEHICLE = 'bookit/vehicles/DELETEVEHICLE';
+const LISTALLVEHICLES = 'bookit/vehicles/LISTALLVEHICLES';
 
 const vehiclesReducer = function reducer(state = [], action = {}) {
   switch (action.type) {
@@ -19,8 +19,7 @@ const vehiclesReducer = function reducer(state = [], action = {}) {
       ];
     }
     case DELETEVEHICLE: {
-            return state.filter((vehicle) => vehicle.id !== action.payload.id);
-
+      return state.filter((vehicle) => vehicle.id !== action.payload.id);
     }
     case LISTALLVEHICLES:
       return [...state, ...action.payload];
@@ -29,21 +28,20 @@ const vehiclesReducer = function reducer(state = [], action = {}) {
   }
 };
 
-export const addVehicle =
-  (brand, model, price, image, description, visible) => async (dispatch) => {
-    await newVehicle(brand, model, price, image, description, visible);
-    dispatch({
-      type: ADDVEHICLE,
-      payload: {
-        brand,
-        model,
-        price,
-        image,
-        description,
-        visible,
-      },
-    });
-  };
+export const addVehicle = (brand, model, price, image, description, visible) => async (dispatch) => {
+  await newVehicle(brand, model, price, image, description, visible);
+  dispatch({
+    type: ADDVEHICLE,
+    payload: {
+      brand,
+      model,
+      price,
+      image,
+      description,
+      visible,
+    },
+  });
+};
 
 export const listAllVehicles = () => async (dispatch) => {
   const vehicles = await listVehicles();

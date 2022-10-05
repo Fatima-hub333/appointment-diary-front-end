@@ -1,17 +1,21 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Container, Row, Col, Alert, Form, Button } from "react-bootstrap";
-import { MdCheck } from "react-icons/md";
-import { AiOutlineRightCircle } from "react-icons/ai";
-import { addVehicle } from "../redux/vehicles/vehicles";
-import "../styles/AddVehicle.scss";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  Container, Row, Col, Alert, Form, Button,
+} from 'react-bootstrap';
+import { MdCheck } from 'react-icons/md';
+import { AiOutlineRightCircle } from 'react-icons/ai';
+import { addVehicle } from '../redux/vehicles/vehicles';
+import '../styles/AddVehicle.scss';
 
 function AddVehicle() {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [vehicle, setVehicle] = useState({});
-  const { price, brand, model, description, image, visible } = vehicle;
-  vehicle.visible = true
+  const {
+    price, brand, model, description, image, visible,
+  } = vehicle;
+  vehicle.visible = true;
 
   const onSelectFile = (e) => {
     if (!e.target.files || e.target.files.length === 0) {
@@ -39,12 +43,11 @@ function AddVehicle() {
       ...vehicle,
       [e.target.name]: e.target.value,
     });
-    
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addVehicle( vehicle.brand, vehicle.model, vehicle.price, vehicle.image, vehicle.description, vehicle.visible));
+    dispatch(addVehicle(vehicle.brand, vehicle.model, vehicle.price, vehicle.image, vehicle.description, vehicle.visible));
   };
   return (
     <Form className="AddVehicle" onSubmit={handleSubmit}>
@@ -60,7 +63,7 @@ function AddVehicle() {
         </Row>
         <Row className="vehicle-contents">
           <Col lg={8}>
-            <div className={`image-panel ${!image && "dotted"}`}>
+            <div className={`image-panel ${!image && 'dotted'}`}>
               <input type="file" onChange={onSelectFile} />
               {image ? (
                 <img src={image} alt={name} className="img-fluid" />
