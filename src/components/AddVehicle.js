@@ -11,9 +11,11 @@ import '../styles/AddVehicle.scss';
 import { getAuth, uploadFile } from '../redux/uploadcare/uploadcare';
 
 const DEFAULT_VALUES = {
-  name: '',
-  price: 0,
-  image: undefined,
+  brand:'Yamaha',
+  model:'2003',
+  description: 'Really good bike',
+  price: 10000,
+  image: 'image.jpg',
   visible: true,
 };
 
@@ -25,7 +27,7 @@ function AddVehicle() {
   } = useSelector((state) => state);
   const [vehicle, setVehicle] = useState({ ...DEFAULT_VALUES });
   const [uploading, setUploading] = useState(undefined);
-  const { price, name, image } = vehicle;
+  const { price, brand, model, image, description } = vehicle;
 
   useEffect(() => {
     if (notice) {
@@ -79,17 +81,17 @@ function AddVehicle() {
         <Row className="errors align-items-end">
           <Col>
             <h1 className="text-center">Add Vehicle</h1>
-            {notice && <Alert variant="success">{notice}</Alert>}
+            {/* {notice && <Alert variant="success">{notice}</Alert>}
             {errors.map((error) => (
               <Alert key={error} variant="danger">
                 {error}
               </Alert>
-            ))}
+            ))} */}
           </Col>
         </Row>
         <Row className="vehicle-contents">
           <Col lg={8}>
-            <div className={`image-panel ${!image && 'dotted'}`}>
+            <div className={`image-panel ${!image && "dotted"}`}>
               <input type="file" onChange={onSelectFile} />
               {image ? (
                 <img src={image} alt={name} className="img-fluid" />
@@ -112,9 +114,27 @@ function AddVehicle() {
             <Row>
               <Form.Control
                 type="text"
-                placeholder="Name"
-                name="name"
-                value={name}
+                placeholder="Brand"
+                name="brand"
+                value={brand}
+                onChange={handleChange}
+              />
+            </Row>
+            <Row>
+              <Form.Control
+                type="text"
+                placeholder="Model"
+                name="model"
+                value={model}
+                onChange={handleChange}
+              />
+            </Row>
+            <Row>
+              <Form.Control
+                type="text"
+                placeholder="Description"
+                name="description"
+                value={description}
                 onChange={handleChange}
               />
             </Row>

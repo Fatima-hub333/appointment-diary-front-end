@@ -54,9 +54,10 @@ export default function reducer(
       };
     }
     case ADDVEHICLE_SUCCESS: {
+      state.all.push(action.payload.data); 
       return {
         ...state,
-        notice: action.payload,
+        notice: action.payload.message,
       };
     }
     case ADDVEHICLE_FALURE: {
@@ -132,12 +133,15 @@ export const showVehicle = (vehicleId) => (dispatch) => client.get(`/vehicles/${
 );
 
 export const addVehicle = (vehicle) => (dispatch) => {
+  vehicle.authentication_token = TokenManager.getToken()
+  const data = JSON.stringify(vehicle)
   dispatch({ type: CLEAR_MESSAGES });
-  return client.post('/vehicles', vehicle).then(
+  return client.post('api/v1/vehicles', data).then(
     (response) => {
+      console.log(response.data);
       dispatch({
         type: ADDVEHICLE_SUCCESS,
-        payload: response.data.message,
+        payload: response.data,
       });
     },
     (error) => {
