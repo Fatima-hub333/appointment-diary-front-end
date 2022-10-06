@@ -1,68 +1,104 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Book.it
 
-The Book.it API is the back-end service for the Book.it application. It makes use of the Ruby on Rails framework, PostgreSQL, and offers full user authentication and authorization capabilities to provide the Book.it app the necessary endpoints. It contains the data for booking vehicles and users' reservations for the individual user as well as admins.
 
+# Book Vehicle
+
+> The Book Vehicle is a a React, Redux application based on the [back-end API-docs](https://book-vehicle.herokuapp.com/).
+
+- In this application we're fetching the returned data from the API in the Redux store.
+
+- The user can reserve a vehicle and it'll update the state automatically, , and also the user can add a vehicle in this application.
 
 ## Built With
 
-- Ruby on Rails
-- JWT
-- CanCanCan
-- Bullet
-- Devise
+- React
+- Redux
+- React Bootstrap
+- HTML
+- CSS
+- Javascript
+- node-modules
+- lighthouse
+- hintweb
+- stylint
+- eslint
+- webpack
+- web server
+- plugins for HTML and CSS
+
+## Live Demo
+
+- [Live Demo Link]()
 
 ## Getting Started
 
-Setting up this project locally:
-## Prerequisites
-#### On your terminal:
-- Clone this repository to your computer: git clone git@github.com:Danie12345/bookit-api-be.git.
-- Open the project on your code editor: "cd bookit-api-be" and "code ."
-- Install gems: bundle install.
-- Run `rails db:create` to create the database
-- Run `rails db:migrate` to create the tables
-- Run `rails s` and go to `http://127.0.0.1:4000`.
+To get a local copy up and running follow these simple steps:
 
-- Setup the front end repo with [this link](https://github.com/Fatima-hub333/appointment-diary-front-end.git).
+- Copy this link `https://github.com/Fatima-hub333/appointment-diary-front-end.git`.
+- Get the directory that you want to clone the repository.
+- Open the command prompt in this directory.
+- Write `git clone https://github.com/Fatima-hub333/appointment-diary-front-end.git`.
+- Go to the repository folder in your command prompt, run `cd space-travellers-hub`.
+- Run `npm install`
+
+### Prerequisites
+
+1. NodeJS
+2. NPM
+
+### Build
+
+Type these commands into the terminal:
+
+- npm run build
+- Open dist/index.html in your web browser.
+
+### Run the application in local environment
+
+Type this command in your terminal
+
+- npm run start
+- Your web browser will open on localhost
+
+### Run tests
+
+Type this command into the terminal:
+
+- npm run test
 
 ## Authors
 
+👤 **Bassem Shams**
+
+- GitHub: [@basem909](https://github.com/basem909)
+- Twitter: [@ShamsBassem](https://twitter.com/ShamsBassem)
+- LinkedIn: [Bassem Abdelrahman](https://www.linkedin.com/in/bassem-shams-126a29134/)
+
+👤 **Isaac maqueen**
+
+- GitHub: [@kinginthenorthcodez](https://github.com/kinginthenorthcodez)
+- Twitter: [@kinginthenorthcodez](https://twitter.com/kinginthenorthcodez)
+
 👤 **Fatima Zahir**
 
-- GitHub: [@emiliazm]()
-- Twitter: [@emilia_zm]()
-- LinkedIn: [LinkedIn]()
+- GitHub: @githubhandle
+- Twitter: @twitterhandle
+- LinkedIn: LinkedIn
 
-👤 **Basem Shams**
-
-- GitHub: [@Danie12345]()
-- Twitter: [@DanielMalo_v4]()
-- LinkedIn: [Daniel Malo]()
-
-👤 **Abdul Hadi**
-
-- GitHub: [@joshuaivie]()
-- Twitter: [@joshuaivie\_]()
-- LinkedIn: [joshuaivie]()
-
-  **Isaac**
-
-- GitHub: [@joshuaivie]()
-- Twitter: [@joshuaivie\_]()
-- LinkedIn: [joshuaivie]()
 
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/Danie12345/bookit-api-be/issues).
-
 ## Show your support
 
 Give a ⭐️ if you like this project!
 
+## Acknowledgments
+
+- [Original design idea by Murat Korkmaz on Behance.](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign) 
+
 ## 📝 License
 
-- This project is [MIT](LICENSE) licensed.
+This project is [MIT](./MIT.md) licensed.
