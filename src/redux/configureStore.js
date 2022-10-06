@@ -15,5 +15,5 @@ const reducer = combineReducers({
 });
 
 const store = createStore(reducer, applyMiddleware(thunk, logger));
-// store.dispatch(loadVehicles());
+store.dispatch(loadVehicles());
 export default store;
