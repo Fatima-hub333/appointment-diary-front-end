@@ -49,7 +49,7 @@
 
 - [Live Demo Link]()
 
-## Link to Back-end ripo
+## Link to Back-end repo
 - https://github.com/Fatima-hub333/appointment-diary-backend
 
 ## Getting Started
@@ -60,7 +60,9 @@ To get a local copy up and running follow these simple steps:
 - Get the directory that you want to clone the repository.
 - Open the command prompt in this directory.
 - Write `git clone https://github.com/Fatima-hub333/appointment-diary-front-end.git`.
-- Go to the repository folder in your command prompt, run `cd space-travellers-hub`.
+- Go to the repository folder in your command prompt, run `cd 
+appointment-diary-front-end
+`.
 - Run `npm install`
 
 ### Prerequisites
@@ -103,7 +105,7 @@ Type this command into the terminal:
 
 👤 **Fatima Zahir**
 
-- GitHub: @githubhandle
+- GitHub: @Fatima-hub333
 - Twitter: @twitterhandle
 - LinkedIn: LinkedIn
 
