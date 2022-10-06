@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useState } from 'react';
 import { useParams } from 'react-router';
 import {
@@ -11,9 +10,7 @@ import '../styles/Reserve.scss';
 const Reserve = () => {
   const dispatch = useDispatch();
   const { vehicle_Id: urlVehicleId } = useParams();
-  console.log('here', urlVehicleId);
   const vehicles = useSelector((state) => state.vehicles.visible);
-  console.log('vehicles:', vehicles);
   const error = useSelector((state) => state.reservations.error);
 
   const [reservation, setReserve] = useState({});

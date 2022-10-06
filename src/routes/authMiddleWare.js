@@ -1,14 +1,9 @@
-/* eslint-disable no-console */
 import React from 'react';
 import { Navigate, Outlet } from 'react-router';
 import PropTypes from 'prop-types';
 import TokenManager from '../utils/tokenManger';
 
 const AuthMiddleWare = ({ children, layout: Layout, isAuthProtected }) => {
-  console.log(isAuthProtected);
-
-  console.log(TokenManager.hasToken());
-
   if (isAuthProtected && !TokenManager.hasToken()) {
     return <Navigate to={{ pathname: '/login' }} />;
   }
