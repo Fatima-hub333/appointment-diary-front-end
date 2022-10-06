@@ -11,8 +11,8 @@ import '../styles/AddVehicle.scss';
 import { getAuth, uploadFile } from '../redux/uploadcare/uploadcare';
 
 const DEFAULT_VALUES = {
-  brand:'Yamaha',
-  model:'2003',
+  brand: 'Yamaha',
+  model: '2003',
   description: 'Really good bike',
   price: 10000,
   image: 'image.jpg',
@@ -27,7 +27,9 @@ function AddVehicle() {
   } = useSelector((state) => state);
   const [vehicle, setVehicle] = useState({ ...DEFAULT_VALUES });
   const [uploading, setUploading] = useState(undefined);
-  const { price, brand, model, image, description } = vehicle;
+  const {
+    price, brand, model, image, description,
+  } = vehicle;
 
   useEffect(() => {
     if (notice) {
@@ -91,7 +93,7 @@ function AddVehicle() {
         </Row>
         <Row className="vehicle-contents">
           <Col lg={8}>
-            <div className={`image-panel ${!image && "dotted"}`}>
+            <div className={`image-panel ${!image && 'dotted'}`}>
               <input type="file" onChange={onSelectFile} />
               {image ? (
                 <img src={image} alt={name} className="img-fluid" />
