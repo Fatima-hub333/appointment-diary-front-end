@@ -153,9 +153,11 @@ export const addVehicle = (vehicle) => (dispatch) => {
   );
 };
 
-export const deleteVehicle = (vehicleId) => (dispatch) => client
+export const deleteVehicle = (vehicleId) => (dispatch) => 
+{const data = TokenManager.getToken()
+client
 // .patch('/vehicles/${vehicleId}', vehicleId).then(
-  .patch(`/vehicles/${vehicleId}`, { visible: false })
+  .delete(`api/v1/vehicles/${vehicleId}?authentication_token=${data}`)
   .then(
     () => {
       dispatch({
@@ -169,4 +171,4 @@ export const deleteVehicle = (vehicleId) => (dispatch) => client
         payload: error?.message,
       });
     },
-  );
+  )};
