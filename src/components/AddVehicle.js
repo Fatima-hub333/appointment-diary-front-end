@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Container, Row, Col, Alert, Form, Button,
 } from 'react-bootstrap';
@@ -7,15 +8,53 @@ import { MdCheck } from 'react-icons/md';
 import { AiOutlineRightCircle } from 'react-icons/ai';
 import { addVehicle } from '../redux/vehicles/vehicles';
 import '../styles/AddVehicle.scss';
+import { getAuth, uploadFile } from '../redux/uploadcare/uploadcare';
+
+const DEFAULT_VALUES = {
+  brand: 'Yamaha',
+  model: '2003',
+  description: 'Really good bike',
+  price: 10000,
+  image: 'image.jpg',
+  visible: true,
+};
 
 function AddVehicle() {
   const dispatch = useDispatch();
-  const [errors, setErrors] = useState([]);
-  const [vehicle, setVehicle] = useState({});
   const {
-    price, brand, model, description, image,
+    vehicles: { notice, errors },
+    uploadcare: { auth, url: imageUrl },
+  } = useSelector((state) => state);
+  const [vehicle, setVehicle] = useState({ ...DEFAULT_VALUES });
+  const [uploading, setUploading] = useState(undefined);
+  const {
+    price, brand, model, image, description,
   } = vehicle;
-  vehicle.visible = true;
+
+  useEffect(() => {
+    if (notice) {
+      setVehicle({ ...DEFAULT_VALUES });
+    }
+  }, [notice]);
+
+  useEffect(() => {
+    if (imageUrl && uploading) {
+      setVehicle({
+        ...vehicle,
+        image: imageUrl,
+      });
+      setUploading(undefined);
+    }
+  }, [imageUrl, uploading]);
+
+  useEffect(() => {
+    if (!auth) dispatch(getAuth());
+    else if (new Date(auth.expire) <= Date.now()) {
+      dispatch(getAuth());
+    } else if (uploading) {
+      dispatch(uploadFile(auth, uploading));
+    }
+  }, [uploading, auth]);
 
   const onSelectFile = (e) => {
     if (!e.target.files || e.target.files.length === 0) {
@@ -26,17 +65,7 @@ function AddVehicle() {
       return;
     }
     const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      setVehicle({
-        ...vehicle,
-        image: reader.result,
-      });
-    };
-    reader.onerror = () => {
-      setErrors([`Error occurred reading file: ${file.name}`]);
-    };
+    setUploading(file);
   };
   const handleChange = (e) => {
     setVehicle({
@@ -44,17 +73,17 @@ function AddVehicle() {
       [e.target.name]: e.target.value,
     });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addVehicle(vehicle.brand, vehicle.model, vehicle.price, vehicle.image,
-      vehicle.description, vehicle.visible));
+    dispatch(addVehicle(vehicle));
   };
   return (
     <Form className="AddVehicle" onSubmit={handleSubmit}>
       <Container>
-        <Row className="errors">
+        <Row className="errors align-items-end">
           <Col>
+            <h1 className="text-center">Add Vehicle</h1>
+            {notice && <Alert variant="success">{notice}</Alert>}
             {errors.map((error) => (
               <Alert key={error} variant="danger">
                 {error}
@@ -67,13 +96,18 @@ function AddVehicle() {
             <div className={`image-panel ${!image && 'dotted'}`}>
               <input type="file" onChange={onSelectFile} />
               {image ? (
-
-                <img src={image} alt="Vehicle" className="img-fluid" />
+                <img src={image} alt={brand} className="img-fluid" />
               ) : (
                 <>
-                  Click to select an image
-                  <br />
-                  Or drag an drop it here.
+                  {uploading ? (
+                    <>Uploading...</>
+                  ) : (
+                    <>
+                      Click to select an image
+                      <br />
+                      Or drag an drop it here.
+                    </>
+                  )}
                 </>
               )}
             </div>
@@ -82,18 +116,9 @@ function AddVehicle() {
             <Row>
               <Form.Control
                 type="text"
-                placeholder="brand"
+                placeholder="Brand"
                 name="brand"
                 value={brand}
-                onChange={handleChange}
-              />
-            </Row>
-            <Row>
-              <Form.Control
-                type="text"
-                placeholder="Description"
-                name="description"
-                value={description}
                 onChange={handleChange}
               />
             </Row>
@@ -108,6 +133,15 @@ function AddVehicle() {
             </Row>
             <Row>
               <Form.Control
+                type="text"
+                placeholder="Description"
+                name="description"
+                value={description}
+                onChange={handleChange}
+              />
+            </Row>
+            <Row>
+              <Form.Control
                 type="number"
                 placeholder="Price"
                 name="price"
@@ -116,7 +150,7 @@ function AddVehicle() {
               />
             </Row>
             <Row>
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" disabled={!image}>
                 <MdCheck />
                 Create
                 <AiOutlineRightCircle />
@@ -128,5 +162,4 @@ function AddVehicle() {
     </Form>
   );
 }
-
 export default AddVehicle;

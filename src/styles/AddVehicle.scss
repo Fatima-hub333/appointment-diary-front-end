@@ -1,7 +1,6 @@
 .AddVehicle {
   & > .container {
-    margin-top: 0;
-    padding: 0 2rem 0 2rem;
+    padding: 4rem;
     min-height: 100vh;
 
     @media only screen and (min-width: 992px) {
@@ -37,14 +36,13 @@
       font-size: 2rem;
       min-height: 70vh;
       margin: 0;
-      margin-bottom: 20px;
     }
 
     &.dotted {
-      border: dashed 3px #efefef;
+      border: dashed 3px var(--secondary-color);
     }
 
-    & > input[type="file"] {
+    & > input[type='file'] {
       position: absolute;
       top: 0;
       left: 0;

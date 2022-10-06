@@ -1,9 +1,9 @@
-import { toast } from 'react-toastify';
+/* eslint-disable no-undef */
 import client from '../../utils/client';
 
-const SIGNUP_REQUEST = 'bookit/userRegistrations/SIGNUP_REQUEST';
-const SIGNUP_SUCCESS = 'bookit/userRegistrations/SIGNUP_SUCCESS';
-const SIGNUP_FAILURE = 'bookit/userRegistrations/SIGNUP_FAILURE';
+const SIGNUP_REQUEST = 'book-vehicle/userRegistrations/SIGNUP_REQUEST';
+const SIGNUP_SUCCESS = 'book-vehicle/userRegistrations/SIGNUP_SUCCESS';
+const SIGNUP_FAILURE = 'book-vehicle/userRegistrations/SIGNUP_FAILURE';
 
 const initialUser = {
   id: null,
@@ -58,21 +58,26 @@ const signupFailure = (error) => ({
   payload: error,
 });
 
-export const signup = (userData) => async (dispatch) => {
+export const signup = (userData, navigate) => async (dispatch) => {
   dispatch(signupRequest());
   try {
     const user = userData;
     user.roles = ['user'];
+    const payload = {
+      name: user.username,
+      email: user.email,
+      password: user.password,
+      password_confirmation: user.passwordConfirmation,
+      roles: user.roles,
+    };
 
-    const data = JSON.stringify(user);
+    const data = JSON.stringify(payload);
     const response = await client.post('/users', data);
+    const responseData = response.data;
 
-    const res = response.data;
-    const payload = res.data;
-
-    dispatch(signupSuccess(payload));
-    // navigate('/');
-    toast.success('Signup successful');
+    dispatch(signupSuccess(responseData.data));
+    navigate('/');
+    // toast.success('Signup successful');  //this need to fixed it sending errors in catch
   } catch (error) {
     dispatch(signupFailure(error.message));
     toast.error('Signup failed');

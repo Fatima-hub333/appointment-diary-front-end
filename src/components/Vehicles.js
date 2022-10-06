@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/Vehicles.scss';
 
 const Vehicles = () => {
-  const vehicles = useSelector((state) => state.vehicles);
+  const vehicles = useSelector((state) => state.vehicles.all);
   return (
     <div className="vehicles-list-cont">
       <div>

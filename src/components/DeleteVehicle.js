@@ -5,7 +5,7 @@ import { deleteVehicle } from '../redux/vehicles/vehicles';
 import '../styles/DeleteVehicle.scss';
 
 function DeleteVehicle() {
-  const vehicles = useSelector((state) => state.vehicles);
+  const vehicles = useSelector((state) => state.vehicles.all);
   const dispatch = useDispatch();
 
   const handleDelete = (id) => {
@@ -47,7 +47,7 @@ function DeleteVehicle() {
                     Delete
                   </button>
                 ) : (
-                  'This vehicle has been marked'
+                  'This vehicle has been deleted'
                 )}
               </td>
             </tr>
