@@ -9,7 +9,7 @@ import NoAuthLayout from './layout/NoAuthLayout';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Routes>

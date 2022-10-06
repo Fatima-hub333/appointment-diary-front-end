@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NavigationPanel from '../components/NavigationPanel';
 
-function NoAuthLayout({ children }) {
+const NoAuthLayout = ({ children }) => {
   return (
     <>
       <NavigationPanel />

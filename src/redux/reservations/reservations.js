@@ -8,10 +8,10 @@ const LOAD_FALURE = 'book-vehicle/reservations/LOAD_FALURE';
 const ADDRESERVATION_SUCCESS = 'book-vehicle/reservations/ADDRESERVATION_SUCCESS';
 const ADDRESERVATION_FAILURE = 'book-vehicle/reservations/ADDRESERVATION_FAILURE';
 
-export default function reducer(
+const  reducer = (
   state = { reservations: [], error: undefined },
   action = {},
-) {
+) => {
   switch (action.type) {
     case LOAD_SUCCESS: {
       return { ...state, reservations: [...action.payload], error: undefined };
@@ -75,3 +75,5 @@ export const addReservation = (reservationData) => (dispatch) => {
       },
     );
 };
+
+export default reducer;

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addReservation } from '../redux/reservations/reservations';
 import '../styles/Reserve.scss';
 
-function Reserve() {
+const Reserve = () => {
   const dispatch = useDispatch();
   const { vehicle_Id: urlVehicleId } = useParams();
   console.log('here', urlVehicleId);

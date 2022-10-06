@@ -10,7 +10,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import { loadVehicles } from '../redux/vehicles/vehicles';
 import '../styles/Vehicles.scss';
 
-function Vehicles() {
+const Vehicles = () => {
   const dispatch = useDispatch();
   const vehicles = useSelector((state) => state.vehicles.visible);
   useEffect(() => {

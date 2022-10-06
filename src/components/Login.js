@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { login, setErrors } from '../redux/userSessions/userSessions';
 import '../styles/Auth.scss';
 
-function Login() {
+const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [user, setUser] = useState({});

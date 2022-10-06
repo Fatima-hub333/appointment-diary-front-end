@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../redux/userSessions/userSessions';
 
-function Logout() {
+const Logout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

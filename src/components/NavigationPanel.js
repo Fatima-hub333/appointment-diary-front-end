@@ -8,7 +8,7 @@ import {
 } from 'react-icons/bs';
 import '../styles/NavigationPanel.scss';
 
-function NavigationPanel() {
+const NavigationPanel = () => {
   const user = useSelector((state) => state.userSessions.user);
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(

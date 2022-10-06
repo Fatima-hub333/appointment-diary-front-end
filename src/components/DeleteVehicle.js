@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteVehicle } from '../redux/vehicles/vehicles';
 import '../styles/DeleteVehicle.scss';
 
-function DeleteVehicle() {
+const DeleteVehicle = () => {
   const vehicles = useSelector((state) => state.vehicles.all);
   const dispatch = useDispatch();
 

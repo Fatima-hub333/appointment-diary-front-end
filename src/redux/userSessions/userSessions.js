@@ -24,7 +24,7 @@ const defaultState = {
   user: initialUser,
 };
 
-export default function reducer(state = defaultState, action = {}) {
+ const reducer = (state = defaultState, action = {}) => {
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
@@ -133,3 +133,5 @@ export const setErrors = (error) => async (dispatch) => {
   dispatch(loginFailure(error));
   toast.error(error);
 };
+
+export default reducer

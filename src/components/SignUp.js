@@ -10,7 +10,7 @@ import {
 } from '../redux/userRegistrations/userRegistrations';
 import '../styles/Auth.scss';
 
-function SignUp() {
+const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [user, setUser] = useState({});

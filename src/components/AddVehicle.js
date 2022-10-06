@@ -9,7 +9,7 @@ import { AiOutlineRightCircle } from 'react-icons/ai';
 import { addVehicle } from '../redux/vehicles/vehicles';
 import '../styles/AddVehicle.scss';
 
-function AddVehicle() {
+const AddVehicle = () => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [vehicle, setVehicle] = useState({});
