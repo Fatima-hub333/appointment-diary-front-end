@@ -1,17 +1,19 @@
 /* eslint-disable no-console */
-import { useState } from "react";
-import { useParams } from "react-router";
-import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { addReservation } from "../redux/reservations/reservations";
-import "../styles/Reserve.scss";
+import { useState } from 'react';
+import { useParams } from 'react-router';
+import {
+  Container, Row, Col, Form, Button, Alert,
+} from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { addReservation } from '../redux/reservations/reservations';
+import '../styles/Reserve.scss';
 
 function Reserve() {
   const dispatch = useDispatch();
   const { vehicle_Id: urlVehicleId } = useParams();
-  console.log("here", urlVehicleId);
+  console.log('here', urlVehicleId);
   const vehicles = useSelector((state) => state.vehicles.visible);
-  console.log("vehicles:", vehicles);
+  console.log('vehicles:', vehicles);
   const error = useSelector((state) => state.reservations.error);
 
   const [reservation, setReserve] = useState({});
@@ -44,7 +46,7 @@ function Reserve() {
                   onChange={handleChange}
                   name="vehicle_id"
                   value={vehicleId}
-                  defaultValue={Number.parseInt(urlVehicleId || "-1", 10)}
+                  defaultValue={Number.parseInt(urlVehicleId || '-1', 10)}
                   required
                   disabled={urlVehicleId !== undefined}
                   className="mb-3 mt-5 w-lg-25"

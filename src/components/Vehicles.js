@@ -15,7 +15,7 @@ function Vehicles() {
   const vehicles = useSelector((state) => state.vehicles.visible);
   useEffect(() => {
     dispatch(loadVehicles());
-  }, []);
+  }, [dispatch]);
   return (
     <Carousel>
       <Carousel.Item className="vehicles-list-cont">

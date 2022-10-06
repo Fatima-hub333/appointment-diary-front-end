@@ -58,7 +58,6 @@ export const loadReservations = () => (dispatch) => client.get(`api/v1/reservati
 export const addReservation = (reservationData) => (dispatch) => {
   const reservation = reservationData;
   reservation.authentication_token = token;
-  console.log(reservation)
   client
     .post(`api/v1/vehicles/${reservation.vehicle_id}/reservations`, reservation)
     .then(

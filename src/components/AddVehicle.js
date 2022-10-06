@@ -1,16 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Container, Row, Col, Alert, Form, Button } from "react-bootstrap";
-import { MdCheck } from "react-icons/md";
-import { AiOutlineRightCircle } from "react-icons/ai";
-import { addVehicle } from "../redux/vehicles/vehicles";
-import "../styles/AddVehicle.scss";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  Container, Row, Col, Alert, Form, Button,
+} from 'react-bootstrap';
+import { MdCheck } from 'react-icons/md';
+import { AiOutlineRightCircle } from 'react-icons/ai';
+import { addVehicle } from '../redux/vehicles/vehicles';
+import '../styles/AddVehicle.scss';
+
 function AddVehicle() {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [vehicle, setVehicle] = useState({});
-  const { price, brand, model, description, image } = vehicle;
+  const {
+    price, brand, model, description, image,
+  } = vehicle;
   vehicle.visible = true;
 
   const onSelectFile = (e) => {
@@ -43,11 +48,10 @@ function AddVehicle() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('dispatched vehicle',vehicle)
     dispatch(
       addVehicle(
-       vehicle
-      )
+        vehicle,
+      ),
     );
   };
   return (
@@ -64,7 +68,7 @@ function AddVehicle() {
         </Row>
         <Row className="vehicle-contents">
           <Col lg={8}>
-            <div className={`image-panel ${!image && "dotted"}`}>
+            <div className={`image-panel ${!image && 'dotted'}`}>
               <input type="file" onChange={onSelectFile} />
               {image ? (
                 <img src={image} alt="Vehicle" className="img-fluid" />
