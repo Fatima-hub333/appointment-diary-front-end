@@ -8,9 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addReservation } from '../redux/reservations/reservations';
 import '../styles/Reserve.scss';
 
-function Reserve() {
+const Reserve = () => {
   const dispatch = useDispatch();
-  const { vehicleId: urlVehicleId } = useParams();
+  const { vehicle_Id: urlVehicleId } = useParams();
   console.log('here', urlVehicleId);
   const vehicles = useSelector((state) => state.vehicles.visible);
   console.log('vehicles:', vehicles);
@@ -93,6 +93,6 @@ function Reserve() {
       </Form>
     </div>
   );
-}
+};
 
 export default Reserve;

@@ -10,12 +10,12 @@ import Carousel from 'react-bootstrap/Carousel';
 import { loadVehicles } from '../redux/vehicles/vehicles';
 import '../styles/Vehicles.scss';
 
-function Vehicles() {
+const Vehicles = () => {
   const dispatch = useDispatch();
   const vehicles = useSelector((state) => state.vehicles.visible);
   useEffect(() => {
     dispatch(loadVehicles());
-  }, []);
+  }, [dispatch]);
   return (
     <Carousel>
       <Carousel.Item className="vehicles-list-cont">
@@ -61,6 +61,6 @@ function Vehicles() {
       </Carousel.Item>
     </Carousel>
   );
-}
+};
 
 export default Vehicles;

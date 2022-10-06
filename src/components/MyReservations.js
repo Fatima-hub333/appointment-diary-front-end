@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadReservations } from '../redux/reservations/reservations';
 import '../styles/MyReservations.scss';
 
-function MyReservations() {
+const MyReservations = () => {
   const dispatch = useDispatch();
   const vehicles = useSelector((state) => state.vehicles.visible);
   const vehicleMap = {};
@@ -48,6 +48,6 @@ function MyReservations() {
       </Table>
     </div>
   );
-}
+};
 
 export default MyReservations;

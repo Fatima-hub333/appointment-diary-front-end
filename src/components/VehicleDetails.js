@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { showVehicle } from '../redux/vehicles/vehicles';
 import '../styles/VehicleDetails.scss';
 
-function VehicleDetails() {
+const VehicleDetails = () => {
   const dispatch = useDispatch();
   const { vehicleId } = useParams();
   const vehicle = useSelector((state) => state.vehicles.current);
@@ -48,6 +48,6 @@ function VehicleDetails() {
       </div>
     </div>
   );
-}
+};
 
 export default VehicleDetails;

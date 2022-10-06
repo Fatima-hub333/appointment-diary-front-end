@@ -6,7 +6,7 @@ import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { signup } from '../redux/userRegistrations/userRegistrations';
 
-function SignUpForm() {
+const SignUpForm = () => {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
@@ -64,5 +64,5 @@ function SignUpForm() {
       </p>
     </>
   );
-}
+};
 export default SignUpForm;
