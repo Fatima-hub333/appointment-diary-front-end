@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-param-reassign */
 import client from '../../utils/client';
 import TokenManager from '../../utils/tokenManger';
 
