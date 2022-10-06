@@ -106,9 +106,9 @@ Type this command into the terminal:
 
 👤 **Fatima Zahir**
 
-- GitHub: @Fatima-hub333
-- Twitter: @twitterhandle
-- LinkedIn: LinkedIn
+- GitHub: [@githubhandle](https://github.com/Fatima-hub333)
+- Twitter: [@twitterhandle](https://twitter.com/Fatima_developr)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/fatimaa-zahir/)
 
 
 ## 🤝 Contributing
