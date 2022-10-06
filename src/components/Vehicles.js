@@ -61,6 +61,6 @@ const Vehicles = () => {
       </Carousel.Item>
     </Carousel>
   );
-}
+};
 
 export default Vehicles;

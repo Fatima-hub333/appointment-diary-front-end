@@ -18,7 +18,7 @@ const defaultState = {
   user: initialUser,
 };
 
- const reducer = (state = defaultState, action = {}) => {
+const reducer = (state = defaultState, action = {}) => {
   switch (action.type) {
     case SIGNUP_REQUEST:
       return {
@@ -42,7 +42,7 @@ const defaultState = {
     default:
       return state;
   }
-}
+};
 
 const signupRequest = () => ({
   type: SIGNUP_REQUEST,
@@ -89,4 +89,4 @@ export const setErrors = (error) => async (dispatch) => {
   toast.error(error);
 };
 
-export default reducer
+export default reducer;

@@ -85,6 +85,6 @@ const NavigationPanel = () => {
       </div>
     </div>
   );
-}
+};
 
 export default NavigationPanel;

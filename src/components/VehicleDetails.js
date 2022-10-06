@@ -48,6 +48,6 @@ const VehicleDetails = () => {
       </div>
     </div>
   );
-}
+};
 
 export default VehicleDetails;

@@ -93,6 +93,6 @@ const Reserve = () => {
       </Form>
     </div>
   );
-}
+};
 
 export default Reserve;

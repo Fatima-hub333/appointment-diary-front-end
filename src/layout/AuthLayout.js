@@ -2,14 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NavigationPanel from '../components/NavigationPanel';
 
-const AuthLayout = ({ children }) => {
-  return (
-    <>
-      <NavigationPanel />
-      {children}
-    </>
-  );
-}
+const AuthLayout = ({ children }) => (
+  <>
+    <NavigationPanel />
+    {children}
+  </>
+);
 
 export default AuthLayout;
 

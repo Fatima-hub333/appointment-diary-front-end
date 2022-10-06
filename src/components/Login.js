@@ -70,6 +70,6 @@ const Login = () => {
       </Container>
     </div>
   );
-}
+};
 
 export default Login;

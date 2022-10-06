@@ -130,5 +130,5 @@ const AddVehicle = () => {
       </Container>
     </Form>
   );
-}
+};
 export default AddVehicle;

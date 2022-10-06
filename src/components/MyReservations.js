@@ -48,6 +48,6 @@ const MyReservations = () => {
       </Table>
     </div>
   );
-}
+};
 
 export default MyReservations;

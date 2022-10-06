@@ -8,7 +8,7 @@ const LOAD_FALURE = 'book-vehicle/reservations/LOAD_FALURE';
 const ADDRESERVATION_SUCCESS = 'book-vehicle/reservations/ADDRESERVATION_SUCCESS';
 const ADDRESERVATION_FAILURE = 'book-vehicle/reservations/ADDRESERVATION_FAILURE';
 
-const  reducer = (
+const reducer = (
   state = { reservations: [], error: undefined },
   action = {},
 ) => {
@@ -38,7 +38,7 @@ const  reducer = (
     default:
       return state;
   }
-}
+};
 
 export const loadReservations = () => (dispatch) => client.get(`api/v1/reservations?authentication_token=${token}`).then(
   (response) => {

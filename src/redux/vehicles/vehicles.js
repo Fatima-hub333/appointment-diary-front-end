@@ -12,7 +12,7 @@ const DELETEVEHICLE_SUCCESS = 'book-vehicle/vehicles/DELETEVEHICLE_SUCCESS';
 const DELETEVEHICLE_FAILURE = 'book-vehicle/vehicles/DELETEVEHICLE_FAILURE';
 export const token = TokenManager.getToken();
 
- const reducer = (
+const reducer = (
   state = {
     visible: [],
     all: [],
@@ -97,7 +97,7 @@ export const token = TokenManager.getToken();
     default:
       return state;
   }
-}
+};
 
 export const loadVehicles = () => (dispatch) => client
   .get('api/v1/vehicles', { params: { authentication_token: TokenManager.getToken() } })
@@ -172,4 +172,4 @@ export const deleteVehicle = (vehicleId) => (dispatch) => {
     );
 };
 
-export default reducer
+export default reducer;

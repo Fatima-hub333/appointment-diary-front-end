@@ -99,6 +99,6 @@ const SignUp = () => {
       </Container>
     </div>
   );
-}
+};
 
 export default SignUp;

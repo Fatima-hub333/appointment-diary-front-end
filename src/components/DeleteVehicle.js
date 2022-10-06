@@ -56,6 +56,6 @@ const DeleteVehicle = () => {
       </Table>
     </div>
   );
-}
+};
 
 export default DeleteVehicle;
