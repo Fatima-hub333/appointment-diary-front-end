@@ -48,7 +48,7 @@
 
 ## Live Demo
 
-- [Live Demo Link]()
+- [Live Demo Link](https://thriving-chebakia-dd687f.netlify.app/login)
 
 ## Link to Back-end repo
 - https://github.com/Fatima-hub333/appointment-diary-backend
