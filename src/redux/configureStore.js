@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import userSessions from './userSessions/userSessions';
 import userRegistrations from './userRegistrations/userRegistrations';
 import reservations from './reservations/reservations';
-import vehicles from './vehicles/vehicles';
+import vehicles, { loadVehicles } from './vehicles/vehicles';
 
 const reducer = combineReducers({
   userSessions,
@@ -15,5 +15,5 @@ const reducer = combineReducers({
 });
 
 const store = createStore(reducer, applyMiddleware(thunk, logger));
-
+// store.dispatch(loadVehicles());
 export default store;

@@ -1,4 +1,5 @@
 import client from '../../utils/client';
+import TokenManager from '../../utils/tokenManger';
 
 const CLEAR_MESSAGES = 'book-vehicle/vehicles/CLEAR_MESSAGES';
 const LOAD_SUCCESS = 'book-vehicle/vehicles/LOAD_SUCCESS';
@@ -96,20 +97,24 @@ export default function reducer(
   }
 }
 
-export const loadVehicles = () => (dispatch) => client.get('/vehicles').then(
-  (response) => {
-    dispatch({
-      type: LOAD_SUCCESS,
-      payload: response.data.vehicles,
-    });
-  },
-  (error) => {
-    dispatch({
-      type: LOAD_FALURE,
-      payload: error.response?.data || error.messsage,
-    });
-  },
-);
+export const loadVehicles = () => (dispatch) =>
+  client
+    .get("api/v1/vehicles", { params: { authentication_token: TokenManager.getToken() } })
+    .then(
+      (response) => {
+        console.log(response.data.data);
+        dispatch({
+          type: LOAD_SUCCESS,
+          payload: response.data.data,
+        });
+      },
+      (error) => {
+        dispatch({
+          type: LOAD_FALURE,
+          payload: error.response?.data || error.messsage,
+        });
+      }
+    );
 
 export const showVehicle = (vehicleId) => (dispatch) => client.get(`/vehicles/${vehicleId}`).then(
   (response) => {

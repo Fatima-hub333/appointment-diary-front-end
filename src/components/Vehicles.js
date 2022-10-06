@@ -1,36 +1,10 @@
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../styles/Vehicles.scss';
 
 const Vehicles = () => {
-  const vehicles = [
-    {
-      id: 10,
-      brand: 'G-Wagon 3',
-      model: 'G-Class base',
-      price: '120000.0',
-      image:
-        'https://imgd.aeplcdn.com/1200x900/cw/ec/36129/MercedesBenz-GClass-Exterior-137817.jpg?wm=0&q=75',
-      description:
-        'The Mercedes-Benz G-Class has finally entered its second generation.',
-      created_at: '2022-10-05T02:17:30.389Z',
-      updated_at: '2022-10-05T02:17:30.389Z',
-      visible: true,
-    },
-    {
-      id: 11,
-      brand: 'G-Wagon 4',
-      model: 'G-Class base',
-      price: '120000.0',
-      image:
-        'https://imgd.aeplcdn.com/1200x900/cw/ec/36129/MercedesBenz-GClass-Exterior-137817.jpg?wm=0&q=75',
-      description:
-        'The Mercedes-Benz G-Class has finally entered its second generation.',
-      created_at: '2022-10-05T02:17:46.390Z',
-      updated_at: '2022-10-05T02:17:46.390Z',
-      visible: true,
-    },
-  ]; // useSelector((state) => state.vehicles);
+  const vehicles = useSelector((state) => state.vehicles);
+  console.log('vehicle at component',vehicles)
   return (
     <div className="vehicles-list-cont">
       <div>
