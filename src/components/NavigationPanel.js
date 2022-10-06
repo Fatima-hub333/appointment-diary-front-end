@@ -18,7 +18,7 @@ function NavigationPanel() {
     if (['/login', '/signup'].includes(location.pathname)) setIsMenuOpen(false);
   }, [location]);
   return (
-    <div className={`NavigationPanel ${isMenuOpen ? 'open' : ''}`}>
+    <div className={`NavigationPanel ${isMenuOpen ? "open" : ""}`}>
       <div className="nav-container">
         <MdMenu
           className="nav-menu-icon"
@@ -38,12 +38,18 @@ function NavigationPanel() {
                 <NavLink to="/main">Vehicles</NavLink>
               </li>
               <li>
+                <NavLink to="/vehicle">Add Vehicles</NavLink>
+              </li>
+              <li>
+                <NavLink to="/vehicles">Delete Vehicles</NavLink>
+              </li>
+              <li>
                 <NavLink to="/reservation">Reserve</NavLink>
               </li>
               <li>
                 <NavLink to="/user/reservations">My reservations</NavLink>
               </li>
-              {user.role === 'admin' && (
+              {user.role === "admin" && (
                 <>
                   <li>
                     <NavLink to="/vehicle">Add vehicle</NavLink>
