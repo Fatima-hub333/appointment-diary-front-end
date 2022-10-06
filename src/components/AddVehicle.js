@@ -83,12 +83,12 @@ function AddVehicle() {
         <Row className="errors align-items-end">
           <Col>
             <h1 className="text-center">Add Vehicle</h1>
-            {/* {notice && <Alert variant="success">{notice}</Alert>}
+            {notice && <Alert variant="success">{notice}</Alert>}
             {errors.map((error) => (
               <Alert key={error} variant="danger">
                 {error}
               </Alert>
-            ))} */}
+            ))}
           </Col>
         </Row>
         <Row className="vehicle-contents">
@@ -96,7 +96,7 @@ function AddVehicle() {
             <div className={`image-panel ${!image && 'dotted'}`}>
               <input type="file" onChange={onSelectFile} />
               {image ? (
-                <img src={image} alt={name} className="img-fluid" />
+                <img src={image} alt={brand} className="img-fluid" />
               ) : (
                 <>
                   {uploading ? (

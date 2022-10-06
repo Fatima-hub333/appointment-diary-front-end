@@ -4,7 +4,6 @@ import '../styles/Vehicles.scss';
 
 const Vehicles = () => {
   const vehicles = useSelector((state) => state.vehicles.all);
-  console.log('vehicle at component', vehicles);
   return (
     <div className="vehicles-list-cont">
       <div>

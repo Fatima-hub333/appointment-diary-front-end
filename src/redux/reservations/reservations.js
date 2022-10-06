@@ -2,7 +2,6 @@
 import client from '../../utils/client';
 import { token } from '../vehicles/vehicles';
 
-
 const LOAD_SUCCESS = 'book-vehicle/reservations/LOAD_SUCCESS';
 const LOAD_FALURE = 'book-vehicle/reservations/LOAD_FALURE';
 
@@ -41,26 +40,24 @@ export default function reducer(
   }
 }
 
-export const loadReservations = () => (dispatch) =>
-  client.get(`api/v1/reservations?authentication_token=${token}`).then(
-    (response) => {
-      dispatch({
-        type: LOAD_SUCCESS,
-        payload: response.data.data,
-      });
-    },
-    (error) => {
-      dispatch({
-        type: LOAD_FALURE,
-        payload: error.response?.data || error.messsage,
-      });
-    }
-  );
+export const loadReservations = () => (dispatch) => client.get(`api/v1/reservations?authentication_token=${token}`).then(
+  (response) => {
+    dispatch({
+      type: LOAD_SUCCESS,
+      payload: response.data.data,
+    });
+  },
+  (error) => {
+    dispatch({
+      type: LOAD_FALURE,
+      payload: error.response?.data || error.messsage,
+    });
+  },
+);
 
-export const addReservation = (reservation) => (dispatch) => 
-{
-  reservation.authentication_token = token
-  console.log(reservation)
+export const addReservation = (reservationData) => (dispatch) => {
+  const reservation = reservationData;
+  reservation.authentication_token = token;
   client
     .post(`api/v1/vehicles/${reservation.vehicle_id}/reservations`, reservation)
     .then(
@@ -75,5 +72,6 @@ export const addReservation = (reservation) => (dispatch) =>
           type: ADDRESERVATION_FAILURE,
           payload: error?.message,
         });
-      }
-    );};
+      },
+    );
+};

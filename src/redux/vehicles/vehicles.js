@@ -55,7 +55,7 @@ export default function reducer(
       };
     }
     case ADDVEHICLE_SUCCESS: {
-      state.all.push(action.payload.data); 
+      state.all.push(action.payload.data);
       return {
         ...state,
         notice: action.payload.message,
@@ -79,7 +79,7 @@ export default function reducer(
       const newVisible = state.all.filter(
         (vehicle) => vehicle.id !== action.payload,
       );
-      return { ...state, all: newVisible, visible: newVisible };
+      return { ...state, all: newVisible, visible: newAll };
     }
     case DELETEVEHICLE_FAILURE: {
       return {
@@ -99,49 +99,45 @@ export default function reducer(
   }
 }
 
-export const loadVehicles = () => (dispatch) =>
-  client
-    .get("api/v1/vehicles", { params: { authentication_token: TokenManager.getToken() } })
-    .then(
-      (response) => {
-        console.log(response.data.data);
-        dispatch({
-          type: LOAD_SUCCESS,
-          payload: response.data.data,
-        });
-      },
-      (error) => {
-        dispatch({
-          type: LOAD_FALURE,
-          payload: error.response?.data || error.messsage,
-        });
-      }
-    );
-
-export const showVehicle = (vehicleId) => (dispatch) =>
-  client.get(`api/v1/vehicles/${vehicleId}?authentication_token=${token}`).then(
+export const loadVehicles = () => (dispatch) => client
+  .get('api/v1/vehicles', { params: { authentication_token: TokenManager.getToken() } })
+  .then(
     (response) => {
-      console.log(response)
       dispatch({
-        type: SHOW_SUCCESS,
+        type: LOAD_SUCCESS,
         payload: response.data.data,
       });
     },
     (error) => {
       dispatch({
-        type: SHOW_FALURE,
+        type: LOAD_FALURE,
         payload: error.response?.data || error.messsage,
       });
-    }
+    },
   );
 
-export const addVehicle = (vehicle) => (dispatch) => {
-  vehicle.authentication_token = token
-  const data = JSON.stringify(vehicle)
+export const showVehicle = (vehicleId) => (dispatch) => client.get(`api/v1/vehicles/${vehicleId}?authentication_token=${token}`).then(
+  (response) => {
+    dispatch({
+      type: SHOW_SUCCESS,
+      payload: response.data.data,
+    });
+  },
+  (error) => {
+    dispatch({
+      type: SHOW_FALURE,
+      payload: error.response?.data || error.messsage,
+    });
+  },
+);
+
+export const addVehicle = (vehicleData) => (dispatch) => {
+  const vehicle = vehicleData;
+  vehicle.authentication_token = token;
+  const data = JSON.stringify(vehicle);
   dispatch({ type: CLEAR_MESSAGES });
   return client.post('api/v1/vehicles', data).then(
     (response) => {
-      console.log(response.data);
       dispatch({
         type: ADDVEHICLE_SUCCESS,
         payload: response.data,
@@ -156,22 +152,22 @@ export const addVehicle = (vehicle) => (dispatch) => {
   );
 };
 
-export const deleteVehicle = (vehicleId) => (dispatch) => 
-{
-client
-// .patch('/vehicles/${vehicleId}', vehicleId).then(
-  .delete(`api/v1/vehicles/${vehicleId}?authentication_token=${token}`)
-  .then(
-    () => {
-      dispatch({
-        type: DELETEVEHICLE_SUCCESS,
-        payload: vehicleId,
-      });
-    },
-    (error) => {
-      dispatch({
-        type: DELETEVEHICLE_FAILURE,
-        payload: error?.message,
-      });
-    },
-  )};
+export const deleteVehicle = (vehicleId) => (dispatch) => {
+  client
+  // .patch('/vehicles/${vehicleId}', vehicleId).then(
+    .delete(`api/v1/vehicles/${vehicleId}?authentication_token=${token}`)
+    .then(
+      () => {
+        dispatch({
+          type: DELETEVEHICLE_SUCCESS,
+          payload: vehicleId,
+        });
+      },
+      (error) => {
+        dispatch({
+          type: DELETEVEHICLE_FAILURE,
+          payload: error?.message,
+        });
+      },
+    );
+};
