@@ -13,6 +13,7 @@ function Reserve() {
   const { vehicleId: urlVehicleId } = useParams();
   console.log('here', urlVehicleId);
   const vehicles = useSelector((state) => state.vehicles.visible);
+  console.log('vehicles:', vehicles)
   const error = useSelector((state) => state.reservations.error);
 
   const [reservation, setReserve] = useState({});
@@ -45,7 +46,7 @@ function Reserve() {
                   onChange={handleChange}
                   name="vehicle_id"
                   value={vehicleId}
-                  defaultValue={Number.parseInt(urlVehicleId || '-1', 10)}
+                  defaultValue={Number.parseInt(urlVehicleId || "-1", 10)}
                   required
                   disabled={urlVehicleId !== undefined}
                   className="mb-3 mt-5 w-lg-25"
@@ -55,7 +56,8 @@ function Reserve() {
                   </option>
                   {vehicles.map((vehicle) => (
                     <option key={vehicle.id} value={vehicle.id}>
-                      {vehicle.name}
+                      {vehicle.brand}
+                      {vehicle.model}
                     </option>
                   ))}
                 </Form.Select>

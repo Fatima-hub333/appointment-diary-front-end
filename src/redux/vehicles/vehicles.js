@@ -10,7 +10,7 @@ const ADDVEHICLE_SUCCESS = 'book-vehicle/vehicles/ADDVEHICLE_SUCCESS';
 const ADDVEHICLE_FALURE = 'book-vehicle/vehicles/ADDVEHICLE_FALURE';
 const DELETEVEHICLE_SUCCESS = 'book-vehicle/vehicles/DELETEVEHICLE_SUCCESS';
 const DELETEVEHICLE_FAILURE = 'book-vehicle/vehicles/DELETEVEHICLE_FAILURE';
-const token = TokenManager.getToken();
+export const token = TokenManager.getToken();
 
 export default function reducer(
   state = {

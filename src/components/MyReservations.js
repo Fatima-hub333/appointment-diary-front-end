@@ -39,7 +39,7 @@ function MyReservations() {
         <tbody>
           {reservations.map((reservation) => (
             <tr key={reservation.id}>
-              <td>{reservation.vehicle?.name || '[deleted]'}</td>
+              <td>{reservation.vehicle?.brand || '[deleted]'}</td>
               <td>{reservation.date}</td>
               <td>{reservation.city}</td>
             </tr>
