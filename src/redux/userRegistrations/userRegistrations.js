@@ -62,13 +62,22 @@ export const signup = (userData, navigate) => async (dispatch) => {
   dispatch(signupRequest());
   try {
     const user = userData;
-    user.role = 'user';
-    const payload = { user };
-    const response = await client.post('users', payload);
-    const { data } = response.data;
-    dispatch(signupSuccess(data));
+    user.roles = ['user'];
+    const payload = {
+      name: user.username,
+      email: user.email,
+      password: user.password,
+      password_confirmation: user.passwordConfirmation,
+      roles: user.roles,
+    };
+
+    const data = JSON.stringify(payload);
+    const response = await client.post('/users', data);
+    const responseData = response.data;
+
+    dispatch(signupSuccess(responseData.data));
     navigate('/');
-    toast.success('Signup successful');
+    // toast.success('Signup successful');  //this need to fixed it sending errors in catch
   } catch (error) {
     dispatch(signupFailure(error.message));
     toast.error('Signup failed');

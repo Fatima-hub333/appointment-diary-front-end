@@ -22,7 +22,7 @@ function Login() {
   };
 
   const handleSubmit = (e) => {
-    loginButton.current.disabled = true;
+    loginButton.current.disabled = false;
     e.preventDefault();
     if (user.email && user.password) {
       dispatch(login(user, navigate));
@@ -42,7 +42,7 @@ function Login() {
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
                   type="email"
-                  placeholder="Enter email"
+                  placeholder="Enter email min 6"
                   name="email"
                   onChange={handleChange}
                 />

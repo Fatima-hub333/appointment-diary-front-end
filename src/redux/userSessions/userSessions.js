@@ -86,12 +86,13 @@ export const setUser = (user) => ({ type: SET_USER, payload: user });
 export const login = (user, navigate) => async (dispatch) => {
   dispatch(loginRequest());
   try {
-    const payload = { user };
-    const response = await client.post('users/sign_in', payload);
-    const { data } = response.data;
-    const token = response.headers.authorization;
+    const data = JSON.stringify(user);
+    const response = await client.post('users/sign_in', data);
+    const resData = response.data;
+    const token = resData.data.authentication_token;
     TokenManager.setToken(token);
     UserObjectManager.setUserObject(data);
+
     dispatch(loginSuccess(data));
     navigate('/main');
     toast.success("You've successfully logged in!");
@@ -106,10 +107,20 @@ export const login = (user, navigate) => async (dispatch) => {
 export const logout = (navigate) => async (dispatch) => {
   dispatch(logoutRequest());
   try {
-    await client.delete('users/sign_out');
+    //  const response = await client.delete('/users/sign_out');
+    //  console.log('SIGN OUT RESONSE SEVER WITH AXIOS:', response);
+    await fetch('https://book-vehicle.herokuapp.com/users/sign_out', {
+      method: 'delete',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+
     TokenManager.destroyToken();
     UserObjectManager.destroyUserObject();
     navigate('/login');
+
     dispatch(logoutSuccess());
     toast("You've successfully logged out!");
   } catch (error) {
