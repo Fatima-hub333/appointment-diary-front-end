@@ -26,6 +26,24 @@
 - webpack
 - web server
 - plugins for HTML and CSS
+## Screenshots
+<img width="700" alt="Screen Shot 2022-10-06 at 16 27 18" src="https://user-images.githubusercontent.com/92399469/194403186-87ab8ae2-122f-43b2-9cc5-83ac20a4c6bd.png">
+[sign in screen]
+<img width="701" alt="Screen Shot 2022-10-06 at 16 27 50" src="https://user-images.githubusercontent.com/92399469/194403657-9d3a52b9-f2a9-4bec-8ce5-c9e239a41b3e.png">
+[Sign-up screen]
+<img width="252" alt="Screen Shot 2022-10-06 at 16 28 24" src="https://user-images.githubusercontent.com/92399469/194403845-d901ad1e-ed19-4c4c-a624-31ca0b33455a.png">
+[Pop up window]
+<img width="703" alt="Screen Shot 2022-10-06 at 16 28 38" src="https://user-images.githubusercontent.com/92399469/194403937-74d63dcc-18e3-490b-9e9e-b8815df5f759.png">
+[Vehicles screen]
+<img width="703" alt="Screen Shot 2022-10-06 at 16 29 18" src="https://user-images.githubusercontent.com/92399469/194403991-59693a2c-0faf-4f18-8554-777e9040f3c6.png">
+[Add vehicles screen]
+<img width="703" alt="Screen Shot 2022-10-06 at 16 29 39" src="https://user-images.githubusercontent.com/92399469/194404064-b89327f4-7ed3-4cb4-a2e3-8a3d8128eef8.png">
+[Delete vehicle screen]
+<img width="699" alt="Screen Shot 2022-10-06 at 16 29 56" src="https://user-images.githubusercontent.com/92399469/194404122-69540a18-d4cb-4496-888f-f8b1c3e28fbc.png">
+[Reserve a vehicle screen]
+<img width="700" alt="Screen Shot 2022-10-06 at 16 30 12" src="https://user-images.githubusercontent.com/92399469/194404172-d21c1fb3-2c3a-4614-b93c-2dc763638996.png">
+[My reservation screen]
+
 
 ## Live Demo
 
