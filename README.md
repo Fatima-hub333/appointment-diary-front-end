@@ -32,8 +32,8 @@
 <img width="701" alt="Screen Shot 2022-10-06 at 16 27 50" src="https://user-images.githubusercontent.com/92399469/194403657-9d3a52b9-f2a9-4bec-8ce5-c9e239a41b3e.png">
 [Sign-up screen]
 <img width="252" alt="Screen Shot 2022-10-06 at 16 28 24" src="https://user-images.githubusercontent.com/92399469/194403845-d901ad1e-ed19-4c4c-a624-31ca0b33455a.png">
-[Pop up window]
-![screenshot](App-Home.png)
+
+![Pop up window](App-Home.png)
 [Vehicles screen]
 <img width="703" alt="Screen Shot 2022-10-06 at 16 29 18" src="https://user-images.githubusercontent.com/92399469/194403991-59693a2c-0faf-4f18-8554-777e9040f3c6.png">
 [Add vehicles screen]
