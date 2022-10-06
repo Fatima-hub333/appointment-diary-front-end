@@ -107,8 +107,6 @@ export const login = (user, navigate) => async (dispatch) => {
 export const logout = (navigate) => async (dispatch) => {
   dispatch(logoutRequest());
   try {
-    //  const response = await client.delete('/users/sign_out');
-    //  console.log('SIGN OUT RESONSE SEVER WITH AXIOS:', response);
     await fetch('https://book-vehicle.herokuapp.com/users/sign_out', {
       method: 'delete',
       headers: {
