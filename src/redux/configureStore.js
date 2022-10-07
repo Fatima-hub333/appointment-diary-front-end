@@ -1,0 +1,19 @@
+/* eslint-disable no-underscore-dangle */
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
+import userSessions from './userSessions/userSessions';
+import userRegistrations from './userRegistrations/userRegistrations';
+import reservations from './reservations/reservations';
+import vehicles, { loadVehicles } from './vehicles/vehicles';
+
+const reducer = combineReducers({
+  userSessions,
+  userRegistrations,
+  vehicles,
+  reservations,
+});
+
+const store = createStore(reducer, applyMiddleware(thunk, logger));
+store.dispatch(loadVehicles());
+export default store;
